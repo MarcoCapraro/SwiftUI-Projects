@@ -7,15 +7,27 @@
 
 import SwiftUI
 
+/* 
+This file contains the initial user interface (UI)
+for your program, and is where we’ll be doing all
+the work in this project.
+*/
 struct ContentView: View {
+    let students = ["Harry", "Hermione", "Ron"]
+    @State private var selectedStudent: String = "Harry"
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            Form {
+                Picker("Select your student", selection: $selectedStudent) {
+                    ForEach(students, id: \.self) { student in
+                        Text("\(student)")
+                    }
+                }
+            }
+            .navigationTitle("Select a Student")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .padding()
     }
 }
 
