@@ -10,14 +10,15 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
-                Color.green
-                Color.mint
+            RadialGradient(colors: [.blue, .black], center: .center, startRadius: 25, endRadius: 200)
+            HStack {
+                Button(role: .destructive) {
+                    print("button tapped")
+                } label: {
+                    Label("Your Content", systemImage: "pencil.circle")
+                }
+                .buttonStyle(.borderedProminent)
             }
-            Text("Your Content")
-                .foregroundStyle(.secondary)
-                .padding(50)
-                .background(.ultraThinMaterial)
         }
         .ignoresSafeArea()
     }
