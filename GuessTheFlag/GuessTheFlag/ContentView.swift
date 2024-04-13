@@ -10,42 +10,16 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            VStack(alignment: .center) {
-                HStack {
-                    Text("1")
-                    Text("2")
-                    Text("3")
-                }
-                HStack {
-                    Text("4")
-                    Text("5")
-                    Text("6")
-                }
-                HStack {
-                    Text("7")
-                    Text("8")
-                    Text("9")
-                }
+            VStack(spacing: 0) {
+                Color.green
+                Color.mint
             }
-            
-            VStack(alignment: .center) {
-                HStack {
-                    Text("11")
-                    Text("2")
-                    Text("3")
-                }
-                HStack {
-                    Text("44")
-                    Text("5")
-                    Text("6")
-                }
-                HStack {
-                    Text("77")
-                    Text("8")
-                    Text("9")
-                }
-            }
+            Text("Your Content")
+                .foregroundStyle(.secondary)
+                .padding(50)
+                .background(.ultraThinMaterial)
         }
+        .ignoresSafeArea()
     }
 }
 
