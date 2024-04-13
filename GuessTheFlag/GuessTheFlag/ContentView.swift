@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAlert = false
+    
     var body: some View {
         ZStack {
             RadialGradient(colors: [.blue, .black], center: .center, startRadius: 25, endRadius: 200)
             HStack {
                 Button(role: .destructive) {
-                    print("button tapped")
+                    showingAlert = true
                 } label: {
-                    Label("Your Content", systemImage: "pencil.circle")
+                    Label("Show Alert", systemImage: "exclamationmark.triangle")
                 }
                 .buttonStyle(.borderedProminent)
+                .alert("Important Message", isPresented: $showingAlert) {
+                    Button("Delete", role: .destructive) {}
+                    Button("Cancel", role: .cancel) {}
+                } message: {
+                    Text("Please read this.")
+                }
             }
         }
         .ignoresSafeArea()
