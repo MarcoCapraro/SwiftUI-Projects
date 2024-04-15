@@ -13,34 +13,60 @@ struct ContentView: View {
     
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    @State private var score = 0
     
     var body: some View {
         ZStack {
-            RadialGradient(colors: [.blue, .black], center: .center, startRadius: 100, endRadius: 350)
+            RadialGradient(colors: [.blue, .black], center: .center, startRadius: 150, endRadius: 450)
                 .ignoresSafeArea()
             
-            VStack(spacing: 30) {
-                VStack {
-                    Text("Tap the flag of")
-                        .font(.subheadline.weight(.heavy))
-                    Text("\(countries[correctAnswer])")
-                        .font(.largeTitle.weight(.semibold))
-                }
-                .foregroundStyle(.white)
+            VStack {
                 
-                ForEach(0..<3) { number in
-                    Button {
-                        flagTapped(number)
-                    } label: {
-                        Image(countries[number])
-                            .clipShape(.capsule)
-                            .shadow(color: .black, radius: 10)
+                Spacer()
+                Text("Guess the Flag")
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(.white)
+                
+                VStack(spacing: 30) {
+                    VStack {
+                        Text("Tap the flag of")
+                            .font(.subheadline.weight(.heavy))
+                            .foregroundStyle(.secondary)
+                        Text("\(countries[correctAnswer])")
+                            .font(.largeTitle.weight(.semibold))
+                    }
+                    .foregroundStyle(.black)
+                    
+                    ForEach(0..<3) { number in
+                        Button {
+                            flagTapped(number)
+                        } label: {
+                            Image(countries[number])
+                                .resizable()
+                                .aspectRatio(1.5, contentMode: .fit)
+                                .frame(width: 200, height: 100)
+                                .clipShape(.circle)
+                                .shadow(color: .black, radius: 10)
+                        }
                     }
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .background(.regularMaterial)
+                .clipShape(.rect(cornerRadius: 20))
+                
+                Spacer()
+                
+                Text("Score: \(score)")
+                    .font(.title.bold())
+                    .foregroundStyle(.white)
+                
+                Spacer()
             }
-            .alert(scoreTitle, isPresented: $showingScore) {
-                Button("Continue", action: askNextQuestion)
-            }
+            .padding()
+        }
+        .alert(scoreTitle, isPresented: $showingScore) {
+            Button("Continue", action: askNextQuestion)
         }
     }
     
@@ -48,9 +74,11 @@ struct ContentView: View {
         if(number == correctAnswer) {
             // alert success
             scoreTitle = "Correct"
+            score += 1
         } else {
             // alert failure
             scoreTitle = "Wrong"
+            score = 0
         }
         
         showingScore = true
