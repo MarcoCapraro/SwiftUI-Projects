@@ -8,27 +8,57 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingAlert = false
+    @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Monaco", "Nigeria", "Poland", "Spain", "UK", "Ukraine", "US"].shuffled()
+    @State private var correctAnswer = Int.random(in: 0...2)
+    
+    @State private var showingScore = false
+    @State private var scoreTitle = ""
     
     var body: some View {
         ZStack {
-            RadialGradient(colors: [.blue, .black], center: .center, startRadius: 25, endRadius: 200)
-            HStack {
-                Button(role: .destructive) {
-                    showingAlert = true
-                } label: {
-                    Label("Show Alert", systemImage: "exclamationmark.triangle")
+            RadialGradient(colors: [.blue, .black], center: .center, startRadius: 100, endRadius: 350)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 30) {
+                VStack {
+                    Text("Tap the flag of")
+                        .font(.subheadline.weight(.heavy))
+                    Text("\(countries[correctAnswer])")
+                        .font(.largeTitle.weight(.semibold))
                 }
-                .buttonStyle(.borderedProminent)
-                .alert("Important Message", isPresented: $showingAlert) {
-                    Button("Delete", role: .destructive) {}
-                    Button("Cancel", role: .cancel) {}
-                } message: {
-                    Text("Please read this.")
+                .foregroundStyle(.white)
+                
+                ForEach(0..<3) { number in
+                    Button {
+                        flagTapped(number)
+                    } label: {
+                        Image(countries[number])
+                            .clipShape(.capsule)
+                            .shadow(color: .black, radius: 10)
+                    }
                 }
             }
+            .alert(scoreTitle, isPresented: $showingScore) {
+                Button("Continue", action: askNextQuestion)
+            }
         }
-        .ignoresSafeArea()
+    }
+    
+    func flagTapped(_ number: Int) {
+        if(number == correctAnswer) {
+            // alert success
+            scoreTitle = "Correct"
+        } else {
+            // alert failure
+            scoreTitle = "Wrong"
+        }
+        
+        showingScore = true
+    }
+    
+    func askNextQuestion() {
+        countries = countries.shuffled()
+        correctAnswer = Int.random(in: 0...2)
     }
 }
 
