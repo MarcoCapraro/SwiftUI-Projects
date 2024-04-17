@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isOn = false
+    
     var body: some View {
         VStack {
             Button("Hellow World") {
-               // random
+                isOn.toggle()
             }
+            .font(.largeTitle.weight(.bold))
+            .foregroundStyle(.background)
             .padding()
-            .background(.white)
-            .padding()
-            .background(.red)
-            .padding()
-            .background(.green)
+            .background(.primary)
+            
+            VStack {
+                Text("LargeTitle")
+                    .font(.largeTitle)
+                Text("Title1")
+                Text("Title2")
+                Text("Title3")
+            }
+            .font(.title)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.indigo)
+        .background(isOn ? .green : .red)
     }
 }
 
