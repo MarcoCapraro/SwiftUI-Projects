@@ -107,7 +107,10 @@ struct ContentView: View {
                 Spacer()
                 
                 GridStack(rows: 4, cols: 4) { row, col in
-                    Text("[\(row),\(col)]")
+                    HStack {
+                        Image(systemName: "\(row * 4 + col).circle")
+                        Text("[\(row),\(col)]")
+                    }
                 }
                 .padding()
                 .background(.white)
