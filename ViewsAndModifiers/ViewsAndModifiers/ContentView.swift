@@ -47,6 +47,24 @@ struct Watermark: ViewModifier {
     }
 }
 
+struct GridStack<Content:View>: View {
+    let rows: Int
+    let cols: Int
+    let content: (Int, Int) -> Content
+    
+    var body: some View {
+        VStack {
+            ForEach(0..<rows, id: \.self) { row in
+                HStack {
+                    ForEach(0..<cols, id: \.self) { col in
+                        content(row, col)
+                    }
+                }
+            }
+        }
+    }
+}
+
 extension View {
     func titleStyle() -> some View {
         modifier(Title())
@@ -86,7 +104,14 @@ struct ContentView: View {
                     .background(.white)
                     .waterMark(with: "Signed Marco Capraro")
 
-                       
+                Spacer()
+                
+                GridStack(rows: 4, cols: 4) { row, col in
+                    Text("[\(row),\(col)]")
+                }
+                .padding()
+                .background(.white)
+                
                 Spacer()
                 motto1
                 motto2
