@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+struct CapsuleText: View {
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .font(.largeTitle)
+            .padding()
+            .foregroundStyle(.white)
+            .background(.blue)
+            .clipShape(.capsule)
+    }
+}
+
 struct ContentView: View {
     @State private var isOn = false
     
@@ -28,17 +41,15 @@ struct ContentView: View {
             .background(.primary)
             
             VStack {
-                Text("LargeTitle")
-                    .font(.largeTitle)
-                Text("Title1")
-                Text("Title2")
-                Text("Title3")
+                CapsuleText(text: "LargeTitle")
+                CapsuleText(text: "Title1")
+                CapsuleText(text: "Title2")
+                CapsuleText(text: "Title3")
                        
                 Spacer()
                 motto1
                 motto2
             }
-            .font(.title)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(isOn ? .green : .red)
