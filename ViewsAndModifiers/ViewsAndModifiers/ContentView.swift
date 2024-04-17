@@ -20,6 +20,43 @@ struct CapsuleText: View {
     }
 }
 
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundStyle(.white)
+            .padding()
+            .background(.blue)
+            .clipShape(.rect(cornerRadius: 20))
+    }
+}
+
+struct Watermark: ViewModifier {
+    var text: String
+    
+    func body(content: Content) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            content
+            
+            Text(text)
+                .font(.caption)
+                .foregroundStyle(.white)
+                .padding(5)
+                .background(.black)
+        }
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        modifier(Title())
+    }
+    
+    func waterMark(with text: String) -> some View {
+        modifier(Watermark(text: text))
+    }
+}
+
 struct ContentView: View {
     @State private var isOn = false
     
@@ -41,10 +78,14 @@ struct ContentView: View {
             .background(.primary)
             
             VStack {
-                CapsuleText(text: "LargeTitle")
-                CapsuleText(text: "Title1")
-                CapsuleText(text: "Title2")
-                CapsuleText(text: "Title3")
+                CapsuleText(text: "Capsule Text")
+                Text("Title Text")
+                    .titleStyle()
+                Text("Watermark Text")
+                    .frame(width: 300, height: 200)
+                    .background(.white)
+                    .waterMark(with: "Signed Marco Capraro")
+
                        
                 Spacer()
                 motto1
