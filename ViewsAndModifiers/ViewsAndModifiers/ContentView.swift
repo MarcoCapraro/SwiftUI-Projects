@@ -65,6 +65,15 @@ struct GridStack<Content:View>: View {
     }
 }
 
+struct LargeBlueTitle: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle.weight(.bold))
+            .foregroundStyle(.blue)
+    }
+}
+
 extension View {
     func titleStyle() -> some View {
         modifier(Title())
@@ -72,6 +81,10 @@ extension View {
     
     func waterMark(with text: String) -> some View {
         modifier(Watermark(text: text))
+    }
+    
+    func largeBlueTitle() -> some View {
+        modifier(LargeBlueTitle())
     }
 }
 
@@ -90,9 +103,8 @@ struct ContentView: View {
             Button("Hello World") {
                 isOn.toggle()
             }
-            .font(.largeTitle.weight(.bold))
-            .foregroundStyle(.background)
-            .padding()
+            .largeBlueTitle()
+            .padding(50)
             .background(.primary)
             
             VStack {
@@ -105,6 +117,8 @@ struct ContentView: View {
                     .waterMark(with: "Signed Marco Capraro")
 
                 Spacer()
+                
+                
                 
                 GridStack(rows: 4, cols: 4) { row, col in
                     HStack {
