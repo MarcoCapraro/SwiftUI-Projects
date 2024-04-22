@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 0
     @State private var tipPercentage = 20
+    @State private var noTip = false
     @FocusState private var amountIsFocused: Bool
     
     let tipPercentages = [10, 20, 25, 0]
@@ -60,11 +61,15 @@ struct ContentView: View {
                         }
                     }
                     .pickerStyle(.navigationLink)
+                    .onChange(of: tipPercentage) {
+                        noTip = tipPercentage == 0 ? true : false
+                    }
                 }
                 
                 Section("Total Amount (Check + Tip)") {
                     Text(totalCheckAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 }
+                .foregroundStyle(noTip ? .red : .primary)
                 
                 Section("Amount Per Person") {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))

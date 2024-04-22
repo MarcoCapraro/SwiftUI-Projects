@@ -87,7 +87,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Spacer()
-            Button("Hellow World") {
+            Button("Hello World") {
                 isOn.toggle()
             }
             .font(.largeTitle.weight(.bold))
