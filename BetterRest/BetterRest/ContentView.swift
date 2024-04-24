@@ -28,9 +28,9 @@ struct ContentView: View {
     @State private var coffeeAmount = 1
     @State private var wakeUp = defaultWakeTime
     
-    @State private var alertTitle = ""
-    @State private var alertMessage = ""
-    @State private var showAlert = false
+    // @State private var alertTitle = ""
+    // @State private var alertMessage = ""
+    // @State private var showAlert = false
     
     // Belongs to the struct not an instance, allows for it to be read at anytime (can be used for wakeUp)
     static var defaultWakeTime: Date {
@@ -45,7 +45,7 @@ struct ContentView: View {
             VStack {
                 Form {
                     Section {
-                        VStack(alignment: .leading, spacing: 5) {
+                        VStack(alignment: .leading, spacing: 10) {
                             Text("When do you want to wake up?")
                                 .subHeadingStyle()
                             
@@ -66,8 +66,11 @@ struct ContentView: View {
                         Text("Daily coffee intake")
                             .subHeadingStyle()
 
-                        
-                        Stepper("^[\(coffeeAmount) cup](inflect: true)", value: $coffeeAmount, in: 1...20)
+                        Picker("^[\(coffeeAmount) cup](inflect: true)", selection: $coffeeAmount) {
+                            ForEach(0..<20) { num in
+                                Text("\(num)")
+                            }
+                        }
                     }
                 }
                 .scrollDisabled(true)
@@ -83,40 +86,55 @@ struct ContentView: View {
                                 .padding(.top, 50)
                             Image(systemName: "moon.zzz")
                                 .font(.title2)
-                                .foregroundStyle(.pink)
+                                .foregroundStyle(.white)
                         }
                     }
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
                         VStack {
+                            Image(systemName: "zzz")
+                                .font(.title2)
+                                .foregroundStyle(.white)
+                            
                             Image(systemName: "bed.double.fill")
                                 .font(.system(size: 25, weight: .bold))
-                                .foregroundStyle(.black)
+                                .foregroundStyle(.white)
                             
-                            Button("Calculate", action: calculateBedTime)
-                                .frame(maxWidth: 125, maxHeight: 100)
-                                .foregroundStyle(.pink)
+                            
+                            Text("Estimated Bedtime: \(calculateBedTime())")
+                                .frame(maxWidth: .infinity)
                                 .background(.black)
-                                .clipShape(.rect(cornerRadius: 20))
+                                .foregroundStyle(.pink)
+                                .clipShape(.rect(cornerRadius: 200))
+                                .font(.system(size: 20, weight: .bold))
+                                .padding()
+                            
+//                            Button("Calculate", action: calculateBedTime)
+//                                .frame(maxWidth: 125, maxHeight: 100)
+//                                .foregroundStyle(.pink)
+//                                .background(.black)
+//                                .clipShape(.rect(cornerRadius: 20))
                         }
-                        .padding(.bottom, 50)
+                        .padding(.bottom, 200)
                     }
                 }
-                .alert(alertTitle, isPresented: $showAlert) {
-                    Button("Ok") {}
-                }message: {
-                    Text(alertMessage)
-                }
-
+//                .alert(alertTitle, isPresented: $showAlert) {
+//                    Button("Ok") {}
+//                }message: {
+//                    Text(alertMessage)
+//                }
+                
                 LinearGradient(colors: [.black, .pink], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
-
+                
             }
+            .background(.black)
         }
     }
     
-    func calculateBedTime() {
+    func calculateBedTime() -> String {
+        var bedTime: String
         do {
             let config = MLModelConfiguration()
             let model = try SleepCalculator(configuration: config)
@@ -128,17 +146,21 @@ struct ContentView: View {
             let prediction = try model.prediction(wake: Double(hour + minute), estimatedSleep: sleepAmount, coffee: Double(coffeeAmount))
             
             let sleepTime = wakeUp - prediction.actualSleep
+            bedTime = sleepTime.formatted(date: .omitted, time: .shortened)
             
-            alertTitle = "Your ideal bedtime is..."
-            alertMessage = sleepTime.formatted(date: .omitted, time: .shortened)
+            // alertTitle = "Your ideal bedtime is..."
+            // alertMessage = sleepTime.formatted(date: .omitted, time: .shortened)
             
         } catch {
             // error: something went wrong
-            alertTitle = "Error"
-            alertMessage = "Sorry, there was a problem calculating your bedtime"
+            bedTime = "N/A"
+            
+            // alertTitle = "Error"
+            // alertMessage = "Sorry, there was a problem calculating your bedtime"
         }
         
-        showAlert = true
+        // showAlert = true
+        return bedTime
     }
 
 }
