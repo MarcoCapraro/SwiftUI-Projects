@@ -16,10 +16,13 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showAlert = false
     
+    @State private var score: Double = 0
+    @State private var wordMultiplier: Double = 1.0
+    
     var body: some View {
         NavigationStack {
             List {
-                TextField("Enter a new word: ", text: $newWord)
+                TextField("Input word: (3+ letters) ", text: $newWord)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 
@@ -38,7 +41,6 @@ struct ContentView: View {
                     Text("Word: \(rootWord)")
                         .underline()
                         .font(.largeTitle.weight(.bold))
-                        .padding(.top, 25)
                 }
             }
             .onAppear(perform: startGame)
@@ -50,15 +52,45 @@ struct ContentView: View {
             } message: {
                 Text(errorMessage)
             }
+            
+            Text("")
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        HStack {
+                            Text("Word Score: \(score.formatted())")
+                                .font(.title2)
+                                .frame(maxWidth: .infinity)
+                                .minimumScaleFactor(0.7)
+
+                            
+                            Button("Restart", action: startGame)
+                                .font(.title2)
+                                .frame(maxWidth: .infinity, maxHeight: 150)
+                                .background(.ultraThickMaterial)
+                                .foregroundColor(.red)
+                                .clipShape(.capsule)
+                        }
+                                        
+                    }
+                }
         }
     }
     
     func addNewWord() {
         // Remove whitespace, case-sensitivity, and ensure not a blank answer
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        guard answer.count > 0 else { return }
         
         // Extra validation
+        guard answer.count > 2 else {
+            wordError(title: "Small Word", message: "You need to input words consisting of 3+ letters!")
+            return
+        }
+        
+        guard answer != rootWord else {
+            wordError(title: "Root Word", message: "You can't just input the same word!")
+            return
+        }
+        
         guard isOriginal(word: answer) else {
             wordError(title: "Repeated Word", message: "You can be more original!")
             return
@@ -70,10 +102,11 @@ struct ContentView: View {
         }
         
         guard isReal(word: answer) else {
-            wordError(title: "Unrecognized word", message: "You can't just make stuff up!")
+            wordError(title: "Unrecognized Word", message: "You can't just make stuff up!")
             return
         }
         
+        calcScore(with: answer)
         withAnimation {
             usedWords.insert(answer, at: 0)
         }
@@ -89,12 +122,26 @@ struct ContentView: View {
                 // Seperate string into an array of strings (aka words) and assign random root
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "condense"
+                
+                // Ensure fresh start
+                restartGame()
                 return
             }
         }
         
         // In the event the start.txt cannot load, cause crash since rest of app will not function
         fatalError("Could not load start.txt from bundle.")
+    }
+    
+    func restartGame() {
+        usedWords.removeAll()
+        newWord = ""
+        score = 0
+    }
+    
+    func calcScore(with word: String) {
+        score += Double(word.count) * wordMultiplier
+        wordMultiplier += 0.25
     }
     
     // Check if the inputted word has already been inserted by the user
