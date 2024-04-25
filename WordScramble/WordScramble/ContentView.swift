@@ -8,52 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
-    let people = ["Gianluca", "Alessandro", "Giuliana", "Marco"]
+    @State private var usedWords = [String]()
+    @State private var rootWord = ""
+    @State private var newWord = ""
     
     var body: some View {
-        
-        List {
-            Text("Static Row")
-            
-            Section("Dynamic Row") {
-                ForEach(people, id: \.self) {
-                    Text($0)
+        NavigationStack {
+            List {
+                TextField("Enter a new word: ", text: $newWord)
+                    .textInputAutocapitalization(.never)
+                
+                Section {
+                    ForEach(usedWords, id: \.self) { word in
+                        Text(word)
+                    }
                 }
             }
-            
-            Text("Static Row")
-        }
-        .listStyle(.grouped)
-    }
-    
-    func testBundles() {
-        if let fileUrl = Bundle.main.url(forResource: "someFile", withExtension: "txt") {
-            // We found the file in our bundle
-            if let fileString = try? String(contentsOf: fileUrl) {
-                // We loaded the url contents into a single string
+            .onSubmit {
+                addNewWord()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(rootWord)
+                        .font(.largeTitle.weight(.bold))
+                }
             }
         }
     }
     
-    func testStrings() {
-        let test = "a b c"
+    func addNewWord() {
+        // Remove whitespace, case-sensitivity, and ensure not a blank answer
+        let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        guard answer.count > 0 else { return }
         
-        let letters = test.components(separatedBy: " ")
-        let letter = letters.randomElement()
-        let trimmed = letter?.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-    
-    func spellChecker() {
-        // Declare word and a checker to check for mispelling
-        let word = "swift"
-        let checker = UITextChecker()
+        // Extra validation
         
-        // Determine the range to check and the mispelled range
-        let range = NSRange(location: 0, length: word.utf16.count)
-        let mispelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        withAnimation {
+            usedWords.insert(answer, at: 0)
+        }
         
-        // In the event NSNotFound is at the first index, there is no mispelling
-        let allGood =  mispelledRange.location == NSNotFound
+        newWord = ""
     }
 }
 
