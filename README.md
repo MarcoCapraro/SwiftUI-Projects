@@ -1,5 +1,11 @@
 # SwiftUI Projects
 This Repository will contain projects used to practice and reinforce SwiftUI.
 
-Current Porjects Include:
+Current Projects Include:
 - WeSplit
+- WeConvert
+- ViewsAndModifiers
+- GuessTheFlag
+- RockPaperScissors
+- BetterRest
+- WordScramble
