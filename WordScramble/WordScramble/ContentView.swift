@@ -25,6 +25,15 @@ struct ContentView: View {
         }
         .listStyle(.grouped)
     }
+    
+    func testBundles() {
+        if let fileUrl = Bundle.main.url(forResource: "someFile", withExtension: "txt") {
+            // We found the file in our bundle
+            if let fileString = try? String(contentsOf: fileUrl) {
+                // We loaded the url contents into a single string
+            }
+        }
+    }
 }
 
 #Preview {
