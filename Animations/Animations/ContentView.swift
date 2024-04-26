@@ -8,18 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var animationScale = 1.0    
+    @State private var animationScale = 1.0
+    @State private var animationPulse = 1.0
     
     var body: some View {
         Button("Tap Me") {
-            animationScale == 3.0 ? (animationScale = 1) : (animationScale += 0.25)
+            animationScale == 2.0 ? (animationScale = 1) : (animationScale += 0.25)
         }
         .padding(25)
         .background(.black)
         .foregroundStyle(.white)
         .clipShape(.capsule)
         .scaleEffect(animationScale)
-        .animation(.default, value: animationScale)
+        .blur(radius: 2.0 * (1 / animationScale))
+        .animation(
+            .spring(duration: 0.5, bounce: 0.75),
+            value: animationScale
+        )
+        .overlay(
+            Capsule()
+                .stroke(.red, lineWidth: 3.0)
+                .scaleEffect(animationPulse)
+                .opacity(2 - animationPulse)
+                .animation(
+                    .easeOut(duration: 1)
+                        .repeatForever(autoreverses: false),
+                    value: animationPulse
+                )
+        )
+        .onAppear {
+            animationPulse = 2
+        }
     }
 }
 
