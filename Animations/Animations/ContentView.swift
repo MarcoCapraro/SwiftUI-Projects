@@ -12,6 +12,20 @@ struct ContentView: View {
     @State private var animationPulse = 1.0
     
     var body: some View {
+        Spacer()
+        
+        Stepper("Scale Amount", value: $animationScale.animation(), in: 1...2, step: 0.25)
+            .frame(maxWidth: 300)
+            .padding(20)
+            .foregroundStyle(.black)
+            .clipShape(.rect(cornerRadius: 20))
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.black, lineWidth: 5)
+            )
+        
+        Spacer()
+        
         Button("Tap Me") {
             animationScale == 2.0 ? (animationScale = 1) : (animationScale += 0.25)
         }
@@ -39,6 +53,8 @@ struct ContentView: View {
         .onAppear {
             animationPulse = 2
         }
+        
+        Spacer()
     }
 }
 
