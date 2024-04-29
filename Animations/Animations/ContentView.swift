@@ -12,6 +12,10 @@ struct ContentView: View {
     @State private var animationPulse = 1.0
     @State private var animationAmount = 0.0
     
+    @State private var enabled1 = false
+    @State private var enabled2 = false
+
+    
     var body: some View {
         Spacer()
         
@@ -34,6 +38,35 @@ struct ContentView: View {
             .onAppear {
                 animationPulse = 1.5
             }
+        
+        Spacer()
+        
+        HStack {
+            Spacer()
+            
+            Button("Tap Me") {
+                enabled1.toggle()
+            }
+            .frame(maxWidth: 100, maxHeight: 100)
+            .background(enabled1 ? .blue : .red)
+            .foregroundStyle(.white)
+            .clipShape(.rect(cornerRadius: enabled1 ? 60: 0))
+            .animation(.default, value: enabled1)
+            
+            Spacer()
+            
+            Button("Tap Me") {
+                enabled2.toggle()
+            }
+            .frame(maxWidth: 200, maxHeight: 200)
+            .background(enabled2 ? .blue : .red)
+            .foregroundStyle(.white)
+            .animation(nil, value: enabled2)
+            .clipShape(.rect(cornerRadius: enabled2 ? 60: 0))
+            .animation(.spring(duration: 1, bounce: 0.9), value: enabled2)
+            
+            Spacer()
+        }
         
         Spacer()
         
