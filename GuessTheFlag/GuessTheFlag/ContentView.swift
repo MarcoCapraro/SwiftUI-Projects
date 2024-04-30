@@ -30,6 +30,11 @@ struct ContentView: View {
     @State private var score = 0
     @State private var questionCounter = 0
     
+    @State private var selectedFlag = -1
+    @State private var isCorrectFlag = false
+    @State private var isWrongFlag = false
+    @State private var isOtherFlag = false
+    
     var body: some View {
         ZStack {
             RadialGradient(colors: [.blue, .black], center: .center, startRadius: 150, endRadius: 450)
@@ -54,10 +59,22 @@ struct ContentView: View {
                     
                     ForEach(0..<3) { number in
                         Button {
-                            flagTapped(number)
+                            withAnimation {
+                                flagTapped(number)
+                            }
                         } label: {
                             FlagImage(country: countries[number])
                         }
+                        .rotation3DEffect(
+                            .degrees(isCorrectFlag && selectedFlag == number ? 360 : 0),
+                            axis: (x: 0.0, y: 1.0, z: 0.0)
+                        )
+                        .opacity(isOtherFlag && selectedFlag != number ? 0.25 : 1.0)
+                        .rotation3DEffect(
+                            .degrees(isWrongFlag && selectedFlag != number ? 270 : 0),
+                            axis: (x: 1.0, y: 0.0, z: 0.0)
+                        )
+                        .scaleEffect(isWrongFlag && selectedFlag != number ? 0.5 : 1.0)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -92,12 +109,16 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
+        selectedFlag = number
         if(number == correctAnswer) {
             // alert success
+            isCorrectFlag = true
+            isOtherFlag = true
             scoreTitle = "Correct! That's \(countries[number])"
             score += 1
         } else {
             // alert failure
+            isWrongFlag = true
             scoreTitle = "Wrong! That's \(countries[number])"
         }
         
@@ -110,6 +131,9 @@ struct ContentView: View {
     }
     
     func askNextQuestion() {
+        isCorrectFlag = false
+        isOtherFlag = false
+        isWrongFlag = false
         countries = countries.shuffled()
         correctAnswer = Int.random(in: 0...2)
     }
