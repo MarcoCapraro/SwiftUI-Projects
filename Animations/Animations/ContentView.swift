@@ -7,6 +7,26 @@
 
 import SwiftUI
 
+struct CornerRotateModifier: ViewModifier {
+    let amount: Double
+    let anchor: UnitPoint
+    
+    func body(content: Content) -> some View {
+        content
+            .rotationEffect(.degrees(amount), anchor: anchor)
+            .clipped()
+    }
+}
+
+extension AnyTransition {
+    static var pivot: AnyTransition {
+        .modifier(
+            active: CornerRotateModifier(amount: -90, anchor: .topLeading),
+            identity: CornerRotateModifier(amount: 0, anchor: .topLeading)
+        )
+    }
+}
+
 struct ContentView: View {
     @State private var animationScale = 1.0
     @State private var animationPulse = 1.0
@@ -20,6 +40,7 @@ struct ContentView: View {
     @State private var dragAmount2 = CGSize.zero
     
     @State private var isShowingCircle = false
+    @State private var isShowingCustomTransition = false
     
     let letters = Array("Drag Me Around!")
     
@@ -81,21 +102,44 @@ struct ContentView: View {
                         
             VStack {
                 
-                Button("???") {
-                    withAnimation {
-                        isShowingCircle.toggle()
+                HStack(spacing: 100) {
+                    ZStack {
+                        Rectangle()
+                            .fill(.blue)
+                            .frame(maxWidth: 50, maxHeight: 50)
+                        
+                        if isShowingCustomTransition {
+                            Rectangle()
+                                .fill(.red)
+                                .frame(maxWidth: 50, maxHeight: 50)
+                                .transition(.pivot)
+                        }
                     }
-                }
-                .frame(maxWidth: 50, maxHeight: 50)
-                .background(.gray)
-                .foregroundStyle(.white)
-                .border(.white)
-                
-                if isShowingCircle {
-                    Circle()
-                        .fill(LinearGradient(colors: [.yellow, .orange], startPoint: .bottomLeading, endPoint: .topTrailing))
-                        .frame(maxWidth: 100, maxHeight: 100)
-                        .transition(.asymmetric(insertion: .scale, removal: .opacity))
+                    .onTapGesture {
+                        withAnimation {
+                            isShowingCustomTransition.toggle()
+                        }
+                    }
+                    
+                    VStack {
+                        Button("???") {
+                            withAnimation {
+                                isShowingCircle.toggle()
+                            }
+                        }
+                        .frame(maxWidth: 50, maxHeight: 50)
+                        .background(.gray)
+                        .foregroundStyle(.white)
+                        .border(.white)
+                        
+                        if isShowingCircle {
+                            Circle()
+                                .fill(LinearGradient(colors: [.yellow, .orange], startPoint: .bottomLeading, endPoint: .topTrailing))
+                                .frame(maxWidth: 100, maxHeight: 100)
+                                .transition(.asymmetric(insertion: .scale, removal: .opacity))
+                        }
+                    }
+                    
                 }
                 
                 Spacer()
@@ -123,18 +167,17 @@ struct ContentView: View {
                 Spacer()
                 
                 LinearGradient(colors: [.green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
-                    .frame(maxWidth: 150, maxHeight: 100)
+                    .frame(maxWidth: 125, maxHeight: 75)
                     .clipShape(.rect(cornerRadius: 20))
                     .offset(dragAmount1)
                     .gesture(
                         DragGesture()
                             .onChanged { dragAmount1 = $0.translation }
                             .onEnded { _ in
-                                withAnimation(.bouncy) {
-                                    dragAmount1 = .zero
-                                }
+                                dragAmount1 = .zero
                             }
                     )
+                    .animation(.bouncy, value: dragAmount1)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(LinearGradient(colors: [.gray, .black], startPoint: .top, endPoint: .bottom))
