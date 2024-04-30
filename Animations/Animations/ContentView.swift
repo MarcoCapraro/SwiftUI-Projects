@@ -19,6 +19,8 @@ struct ContentView: View {
     @State private var dragAmount1 = CGSize.zero
     @State private var dragAmount2 = CGSize.zero
     
+    @State private var isShowingCircle = false
+    
     let letters = Array("Drag Me Around!")
     
     var body: some View {
@@ -76,8 +78,25 @@ struct ContentView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.bottom, 45)
             .background(LinearGradient(colors: [.white, .gray], startPoint: .top, endPoint: .bottom))
-            
+                        
             VStack {
+                
+                Button("???") {
+                    withAnimation {
+                        isShowingCircle.toggle()
+                    }
+                }
+                .frame(maxWidth: 50, maxHeight: 50)
+                .background(.gray)
+                .foregroundStyle(.white)
+                .border(.white)
+                
+                if isShowingCircle {
+                    Circle()
+                        .fill(LinearGradient(colors: [.yellow, .orange], startPoint: .bottomLeading, endPoint: .topTrailing))
+                        .frame(maxWidth: 100, maxHeight: 100)
+                        .transition(.asymmetric(insertion: .scale, removal: .opacity))
+                }
                 
                 Spacer()
                 
