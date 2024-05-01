@@ -10,7 +10,7 @@ import SwiftUI
 struct TableTitle: View {
     var body: some View {
         Text("Table Time")
-            .font(.custom("SuperBubble", size: 32, relativeTo: .title))
+            .font(.custom("SuperBubble", size: 22, relativeTo: .title))
             .foregroundStyle(.green)
             .padding()
             .background(.black)
@@ -34,19 +34,24 @@ struct ContentView: View {
             ZStack {
                 Color.cyan
                     .ignoresSafeArea()
-                
-                Image(randomAnimal)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: 100, maxHeight: 100)
-                    .position(randomSpawn)
         
                 VStack {
-                    Text("Test")
                 }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        TableTitle()
+                        HStack {
+                            Image("cow")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(maxWidth: 60, maxHeight: 60)
+                                .padding(.top, 20)
+                            TableTitle()
+                            Image("goat")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(maxWidth: 60, maxHeight: 60)
+                                .padding(.top, 20)
+                        }
                     }
                 }
             }
@@ -54,7 +59,6 @@ struct ContentView: View {
     }
     
     func newSpawn() {
-        fadeAmount = 1.0
         animals = animals.shuffled()
         randomAnimal = animals[0]
         randomSpawn = CGPoint(x: .random(in: 0..<9*(UIScreen.main.bounds.width/10)), y: .random(in: 0..<9*(UIScreen.main.bounds.height/10)))
