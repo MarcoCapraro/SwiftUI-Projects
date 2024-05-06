@@ -20,17 +20,19 @@ struct TableTitle: View {
 }
 
 struct SettingStyle: ViewModifier {
+    var alignmentSetting: Alignment
+    
     func body(content: Content) -> some View {
         content
             .font(.custom("SuperBubble", size: 22, relativeTo: .title2))
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: alignmentSetting)
             .padding(10)
     }
 }
 
 extension View {
-    func settingStyle() -> some View {
-        modifier(SettingStyle())
+    func settingStyle(alignmentSetting: Alignment) -> some View {
+        modifier(SettingStyle(alignmentSetting: alignmentSetting))
     }
 }
 
@@ -44,10 +46,12 @@ struct ContentView: View {
     @State private var animals = ["bear", "buffalo", "chick", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "frog", "giraffe", "goat", "gorilla", "hippo", "horse", "monkey", "moose", "narwhal", "owl", "panda", "parrot", "penguin", "pig", "rabbit", "rhino", "sloth", "snake", "walrus", "whale", "zebra"]
     @State private var multiplicationTable: [Int] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     
-    @State private var difficultyValue = "Easy"
     @State private var tableValue = 2
     @State private var totalQuestions = 5
     @State private var answer = ""
+    @State private var animalButton = "bear"
+    
+    @State private var isShowingQuiz = false
 
     var body: some View {
         NavigationStack {
@@ -59,42 +63,66 @@ struct ContentView: View {
                     Text("")
                     VStack(spacing: 0) {
                         Stepper("Practice Table \(tableValue)", value: $tableValue, in: 2...12, step: 1)
-                            .settingStyle()
+                            .settingStyle(alignmentSetting: .leading)
                         
                         Stepper("\(totalQuestions) Questions", value: $totalQuestions, in: 5...20, step: 5)
-                            .settingStyle()
+                            .settingStyle(alignmentSetting: .leading)
                         
-//                        HStack {
-//                            Text("Difficulty Level")
-//                                .settingStyle()
-//                            
-//                            
-//                            Picker("", selection: $difficultyValue) {
-//                                ForEach(difficultyLevels, id: \.self) {
-//                                    Text("\($0)")
-//                                        .font(.custom("SuperBubble", size: 22, relativeTo: .title2))
-//                                }
-//                            }
-//                            .accentColor(.black)
-//                        }
                     }
                     .background(.ultraThinMaterial)
                     .border(.black, width: 5)
                     
                     Spacer()
                     
-                    Image("owl")
+                    VStack {
+                        Text("Unlock New Animals!")
+                            .settingStyle(alignmentSetting: .center)
+                            .foregroundStyle(.black)
+                        
+                        HStack {
+                            Button() {
+                                swapAnimals(isForward: false)
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .frame(maxWidth: 150, maxHeight: 200)
+                                    .font(.largeTitle)
+                                    .background(.ultraThinMaterial)
+                                    .clipShape(.rect(cornerRadius: 20))
+                            }
+                            
+                            Image(animalButton)
+                                .frame(minWidth: 215, minHeight: 215)
+                                .padding(50)
+                                .background(.ultraThinMaterial)
+                                .clipShape(.circle)
+                            
+                            Button() {
+                                swapAnimals(isForward: true)
+                            } label: {
+                                Image(systemName: "chevron.right")
+                                    .frame(maxWidth: 150, maxHeight: 200)
+                                    .font(.largeTitle)
+                                    .background(.ultraThinMaterial)
+                                    .clipShape(.rect(cornerRadius: 20))
+                            }
+                            
+                        }
+                    }
                     
                     Spacer()
                     
-                    Button("Begin") {
-                        // Transition to new screen, transfering tableValue and totalQuestions
+                    NavigationLink(destination: TableQuizView(), isActive: $isShowingQuiz) {
+                        Button("Begin") {
+                            // Transition to new screen, transfering tableValue and totalQuestions
+                            isShowingQuiz = true
+                        }
+                        .font(.custom("SuperBubble", size: 50, relativeTo: .title2))
+                        .foregroundStyle(.mint)
+                        .padding(20)
+                        .background(.indigo)
+                        .clipShape(.capsule)
                     }
-                    .font(.custom("SuperBubble", size: 50, relativeTo: .title2))
-                    .foregroundStyle(.mint)
-                    .padding(20)
-                    .background(.indigo)
-                    .clipShape(.capsule)
+
                     
                     Spacer()
                     
@@ -122,6 +150,19 @@ struct ContentView: View {
                 }
             }
         }
+    }
+    
+    func swapAnimals(isForward: Bool) {
+        guard let currentIndex = animals.firstIndex(of: animalButton) else { return }
+        var nextIndex = 0
+        
+        if isForward {
+            nextIndex = min(currentIndex + 1, animals.count - 1)
+        } else {
+            nextIndex = max(currentIndex - 1, 0)
+        }
+        
+        animalButton = animals[nextIndex]
     }
     
     // Identify font names
