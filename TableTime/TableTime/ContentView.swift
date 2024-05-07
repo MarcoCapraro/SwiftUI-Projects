@@ -15,24 +15,25 @@ struct TableTitle: View {
             .padding()
             .background(.indigo)
             .clipShape(.capsule)
-            .padding(.top, 20)
+            .ignoresSafeArea()
     }
 }
 
 struct SettingStyle: ViewModifier {
     var alignmentSetting: Alignment
+    var fontSize: CGFloat
     
     func body(content: Content) -> some View {
         content
-            .font(.custom("SuperBubble", size: 22, relativeTo: .title2))
+            .font(.custom("SuperBubble", size: fontSize, relativeTo: .title2))
             .frame(maxWidth: .infinity, alignment: alignmentSetting)
             .padding(10)
     }
 }
 
 extension View {
-    func settingStyle(alignmentSetting: Alignment) -> some View {
-        modifier(SettingStyle(alignmentSetting: alignmentSetting))
+    func settingStyle(alignmentSetting: Alignment, fontSize: CGFloat) -> some View {
+        modifier(SettingStyle(alignmentSetting: alignmentSetting, fontSize: fontSize))
     }
 }
 
@@ -42,7 +43,6 @@ struct Question {
 }
 
 struct ContentView: View {
-    //    @State private var difficultyLevels = ["Easy", "Medium", "Hard"]
     @State private var animals = ["bear", "buffalo", "chick", "chicken", "cow", "crocodile", "dog", "duck", "elephant", "frog", "giraffe", "goat", "gorilla", "hippo", "horse", "monkey", "moose", "narwhal", "owl", "panda", "parrot", "penguin", "pig", "rabbit", "rhino", "sloth", "snake", "walrus", "whale", "zebra"]
     @State private var multiplicationTable: [Int] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     
@@ -60,13 +60,12 @@ struct ContentView: View {
                     .ignoresSafeArea()
         
                 VStack {
-                    Text("")
                     VStack(spacing: 0) {
                         Stepper("Practice Table \(tableValue)", value: $tableValue, in: 2...12, step: 1)
-                            .settingStyle(alignmentSetting: .leading)
+                            .settingStyle(alignmentSetting: .leading, fontSize: 22)
                         
                         Stepper("\(totalQuestions) Questions", value: $totalQuestions, in: 5...20, step: 5)
-                            .settingStyle(alignmentSetting: .leading)
+                            .settingStyle(alignmentSetting: .leading, fontSize: 22)
                         
                     }
                     .background(.ultraThinMaterial)
@@ -76,7 +75,7 @@ struct ContentView: View {
                     
                     VStack {
                         Text("Unlock New Animals!")
-                            .settingStyle(alignmentSetting: .center)
+                            .settingStyle(alignmentSetting: .center, fontSize: 22)
                             .foregroundStyle(.black)
                         
                         HStack {
@@ -111,7 +110,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: TableQuizView(), isActive: $isShowingQuiz) {
+                    NavigationLink(destination: TableQuizView(initialNum: tableValue, numQuestions: totalQuestions, animalToUnlock: animalButton), isActive: $isShowingQuiz) {
                         Button("Begin") {
                             // Transition to new screen, transfering tableValue and totalQuestions
                             isShowingQuiz = true
@@ -126,11 +125,9 @@ struct ContentView: View {
                     
                     Spacer()
                     
-//                    Text("What is 2 x \(multiplicationTable.randomElement()!)?")
-//                    TextField("input answer here", text: $answer)
-//                        .frame(maxWidth: 200, alignment: .leading)
-//                        .background()
                 }
+                .padding(40)
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         HStack {
@@ -138,13 +135,11 @@ struct ContentView: View {
                                 .resizable()
                                 .scaledToFill()
                                 .frame(maxWidth: 60, maxHeight: 60)
-                                .padding(.top, 20)
                             TableTitle()
                             Image("goat")
                                 .resizable()
                                 .scaledToFill()
                                 .frame(maxWidth: 60, maxHeight: 60)
-                                .padding(.top, 20)
                         }
                     }
                 }
