@@ -16,29 +16,7 @@ class User {
 
 struct SecondView: View {
     @Environment(\.dismiss) var dismiss
-    
-    let user: User
-    
-    var body: some View {
-        ZStack {
-            Color.black
-                .ignoresSafeArea()
-            
-            VStack {
-                Text("Hello, \(user.firstName)")
-                Button("Dismiss") {
-                    dismiss()
-                }
-                .font(.largeTitle)
-                .foregroundStyle(.blue)
-            }
-        }
-    }
-}
-
-struct ContentView: View {
-    @State private var user = User()
-    @State private var showingView = false
+    @State var user: User
     
     var body: some View {
         ZStack {
@@ -55,22 +33,60 @@ struct ContentView: View {
                     TextField("Last Name", text: $user.lastName)
                 }
                 
-                Spacer()
-                
-                Button("Show New View") {
-                    // show view
-                    showingView = true
+                Button("Dismiss") {
+                    dismiss()
                 }
                 .font(.largeTitle)
                 .foregroundStyle(.blue)
-                .sheet(isPresented: $showingView) {
-                    SecondView(user: user)
+            }
+        }
+    }
+}
+
+struct ContentView: View {
+    @State private var user = User()
+    @State private var showingView = false
+    
+    @State private var numbers = [Int]()
+    @State private var currentNumber = 1
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                List {
+                    ForEach(numbers, id: \.self) {
+                        Text("Row \($0)")
+                    }
+                    .onDelete(perform: removeRows)
                 }
                 
-                Spacer()
+                Button("Add Row") {
+                    numbers.append(currentNumber)
+                    currentNumber += 1
+                }
+                .font(.largeTitle)
+                .foregroundStyle(.blue)
             }
-            .foregroundStyle(.white)
+            .toolbar {
+                EditButton()
+            }
+            
+            Spacer()
+            
+            Button("Show New View") {
+                // show view
+                showingView = true
+            }
+            .font(.title2)
+            .foregroundStyle(.blue)
+            .sheet(isPresented: $showingView) {
+                SecondView(user: user)
+            }
         }
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+        numbers.remove(atOffsets: offsets)
     }
 }
 
