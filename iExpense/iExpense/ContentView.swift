@@ -44,6 +44,7 @@ struct SecondView: View {
 }
 
 struct ContentView: View {
+    @AppStorage("tapCount") private var tapCount = 0
     @State private var user = User()
     @State private var showingView = false
     
@@ -71,16 +72,20 @@ struct ContentView: View {
                 EditButton()
             }
             
-            Spacer()
-            
-            Button("Show New View") {
-                // show view
-                showingView = true
-            }
-            .font(.title2)
-            .foregroundStyle(.blue)
-            .sheet(isPresented: $showingView) {
-                SecondView(user: user)
+            HStack {
+                Button("Tap Count = \(tapCount)") {
+                    tapCount += 1
+                }
+                
+                Button("Show New View") {
+                    // show view
+                    showingView = true
+                }
+                .font(.title2)
+                .foregroundStyle(.blue)
+                .sheet(isPresented: $showingView) {
+                    SecondView(user: user)
+                }
             }
         }
     }
