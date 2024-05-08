@@ -8,15 +8,20 @@
 import Observation
 import SwiftUI
 
-@Observable
-class User {
-    var firstName = "Marco"
-    var lastName = "Capraro"
+//@Observable
+//class User {
+//    var firstName = "Marco"
+//    var lastName = "Capraro"
+//}
+
+struct UserData: Codable {
+    var firstName: String
+    var lastName: String
 }
 
 struct SecondView: View {
     @Environment(\.dismiss) var dismiss
-    @State var user: User
+    @State private var userData = UserData(firstName: "Marco", lastName: "Capraro")
     
     var body: some View {
         ZStack {
@@ -24,13 +29,19 @@ struct SecondView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Image(systemName: "15.circle")
-                    .font(.largeTitle)
-                
                 VStack {
-                    Text("Your name is \(user.firstName) \(user.lastName)")
-                    TextField("First Name", text: $user.firstName)
-                    TextField("Last Name", text: $user.lastName)
+                    Text("Your name is \(userData.firstName) \(userData.lastName)")
+                    TextField("First Name", text: $userData.firstName)
+                    TextField("Last Name", text: $userData.lastName)
+                }
+                .foregroundStyle(.white)
+                
+                Button("Save User Data") {
+                    let encoder = JSONEncoder()
+                    
+                    if let data = try? encoder.encode(userData) {
+                        UserDefaults.standard.set(data, forKey: "UserData")
+                    }
                 }
                 
                 Button("Dismiss") {
@@ -45,7 +56,6 @@ struct SecondView: View {
 
 struct ContentView: View {
     @AppStorage("tapCount") private var tapCount = 0
-    @State private var user = User()
     @State private var showingView = false
     
     @State private var numbers = [Int]()
@@ -84,7 +94,7 @@ struct ContentView: View {
                 .font(.title2)
                 .foregroundStyle(.blue)
                 .sheet(isPresented: $showingView) {
-                    SecondView(user: user)
+                    SecondView()
                 }
             }
         }
