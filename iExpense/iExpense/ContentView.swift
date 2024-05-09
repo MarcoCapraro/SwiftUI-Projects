@@ -5,104 +5,44 @@
 //  Created by Marco Capraro on 5/8/24.
 //
 
-import Observation
 import SwiftUI
 
-//@Observable
-//class User {
-//    var firstName = "Marco"
-//    var lastName = "Capraro"
-//}
-
-struct UserData: Codable {
-    var firstName: String
-    var lastName: String
+struct ExpenseItem: Hashable {
+    let name: String
+    let type: String
+    let amount: Double
 }
 
-struct SecondView: View {
-    @Environment(\.dismiss) var dismiss
-    @State private var userData = UserData(firstName: "Marco", lastName: "Capraro")
-    
-    var body: some View {
-        ZStack {
-            Color.black
-                .ignoresSafeArea()
-            
-            VStack {
-                VStack {
-                    Text("Your name is \(userData.firstName) \(userData.lastName)")
-                    TextField("First Name", text: $userData.firstName)
-                    TextField("Last Name", text: $userData.lastName)
-                }
-                .foregroundStyle(.white)
-                
-                Button("Save User Data") {
-                    let encoder = JSONEncoder()
-                    
-                    if let data = try? encoder.encode(userData) {
-                        UserDefaults.standard.set(data, forKey: "UserData")
-                    }
-                }
-                
-                Button("Dismiss") {
-                    dismiss()
-                }
-                .font(.largeTitle)
-                .foregroundStyle(.blue)
-            }
-        }
-    }
+@Observable
+class Expenses {
+    var items = [ExpenseItem]()
 }
 
 struct ContentView: View {
-    @AppStorage("tapCount") private var tapCount = 0
-    @State private var showingView = false
-    
-    @State private var numbers = [Int]()
-    @State private var currentNumber = 1
+    @State private var expenses = Expenses()
     
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    ForEach(numbers, id: \.self) {
-                        Text("Row \($0)")
-                    }
-                    .onDelete(perform: removeRows)
+            List {
+                ForEach(expenses.items, id: \.self) { item in
+                    Text("\(item.name)")
                 }
-                
-                Button("Add Row") {
-                    numbers.append(currentNumber)
-                    currentNumber += 1
-                }
-                .font(.largeTitle)
-                .foregroundStyle(.blue)
+                .onDelete(perform: removeExpense)
             }
+            .navigationTitle("iExpense")
             .toolbar {
-                EditButton()
-            }
-            
-            HStack {
-                Button("Tap Count = \(tapCount)") {
-                    tapCount += 1
-                }
-                
-                Button("Show New View") {
-                    // show view
-                    showingView = true
-                }
-                .font(.title2)
-                .foregroundStyle(.blue)
-                .sheet(isPresented: $showingView) {
-                    SecondView()
+                Button("Add Expense", systemImage: "plus") {
+                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
+                    expenses.items.append(expense)
                 }
             }
         }
     }
     
-    func removeRows(at offsets: IndexSet) {
-        numbers.remove(atOffsets: offsets)
+    func removeExpense(at offsets: IndexSet) {
+        expenses.items.remove(atOffsets: offsets)
     }
+    
 }
 
 #Preview {
