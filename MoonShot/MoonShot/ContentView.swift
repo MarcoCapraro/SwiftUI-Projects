@@ -23,21 +23,34 @@ struct CustomText: View {
 struct ContentView: View {
     var body: some View {
         
-        Image(.tron)
-            .resizable()
-            .scaledToFit()
-            .containerRelativeFrame(.horizontal) { size, axis in
-                size * 0.8
-            }
         
-        ScrollView(.horizontal) {
-            LazyHStack {
-                ForEach(0..<100) {
-                    CustomText(text: "Item \($0)")
-                        .font(.title)
+        
+        NavigationStack {
+            Image(.tron)
+                .resizable()
+                .scaledToFit()
+                .containerRelativeFrame(.horizontal) { size, axis in
+                    size * 0.8
+                }
+            
+            List(0..<100) { row in
+                NavigationLink("Row \(row)") {
+                    Text("Detail \(row)")
+                }
+            }
+            .navigationTitle("SwiftUI")
+            
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(0..<100) {
+                        CustomText(text: "Item \($0)")
+                            .font(.title)
+                    }
                 }
             }
         }
+        
+        
         
         
         
