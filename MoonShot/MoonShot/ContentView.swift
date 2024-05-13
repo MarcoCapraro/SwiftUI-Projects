@@ -31,6 +31,10 @@ struct Address: Codable {
 }
 
 struct ContentView: View {
+    let layout = [
+        GridItem(.adaptive(minimum: 80, maximum: 120))
+    ]
+    
     var body: some View {
         NavigationStack {
             Image(.tron)
@@ -42,7 +46,13 @@ struct ContentView: View {
             
             List(0..<100) { row in
                 NavigationLink("Row \(row)") {
-                    Text("Detail \(row)")
+                    ScrollView {
+                        LazyVGrid(columns: layout) {
+                            ForEach(0..<1000) {
+                                Text("Item \($0)")
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle("SwiftUI")
