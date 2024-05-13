@@ -20,11 +20,18 @@ struct CustomText: View {
     }
 }
 
+struct User: Codable {
+    let name: String
+    let address: Address
+}
+
+struct Address: Codable {
+    let street: String
+    let city: String
+}
+
 struct ContentView: View {
     var body: some View {
-        
-        
-        
         NavigationStack {
             Image(.tron)
                 .resizable()
@@ -46,6 +53,26 @@ struct ContentView: View {
                         CustomText(text: "Item \($0)")
                             .font(.title)
                     }
+                }
+            }
+            
+            Button("Decode JSON") {
+                // JSON String to test with
+                let input = """
+                {
+                    "name": "Marco Capraro",
+                    "address": {
+                        "street": "555, Marco Capraro Avenue",
+                        "city": "Nashville"
+                    }
+                }
+                """
+                
+                let data = Data(input.utf8)
+                let decoder = JSONDecoder()
+                
+                if let user = try? decoder.decode(User.self, from: data) {
+                    print(user.address.street)
                 }
             }
         }
