@@ -11,6 +11,11 @@
 		8748A45C2BF2718B000A1B01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748A45B2BF2718B000A1B01 /* ContentView.swift */; };
 		8748A45E2BF2718C000A1B01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8748A45D2BF2718C000A1B01 /* Assets.xcassets */; };
 		8748A4612BF2718C000A1B01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8748A4602BF2718C000A1B01 /* Preview Assets.xcassets */; };
+		8748A4692BF3BCF3000A1B01 /* missions.json in Resources */ = {isa = PBXBuildFile; fileRef = 8748A4672BF3BCF3000A1B01 /* missions.json */; };
+		8748A46A2BF3BCF3000A1B01 /* astronauts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8748A4682BF3BCF3000A1B01 /* astronauts.json */; };
+		8748A46C2BF3BD9D000A1B01 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748A46B2BF3BD9D000A1B01 /* Astronaut.swift */; };
+		8748A46E2BF3BDF3000A1B01 /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748A46D2BF3BDF3000A1B01 /* Bundle+Ext.swift */; };
+		8748A4702BF3BFB1000A1B01 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748A46F2BF3BFB1000A1B01 /* PracticeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,11 @@
 		8748A45B2BF2718B000A1B01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8748A45D2BF2718C000A1B01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8748A4602BF2718C000A1B01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8748A4672BF3BCF3000A1B01 /* missions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = missions.json; sourceTree = "<group>"; };
+		8748A4682BF3BCF3000A1B01 /* astronauts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = astronauts.json; sourceTree = "<group>"; };
+		8748A46B2BF3BD9D000A1B01 /* Astronaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronaut.swift; sourceTree = "<group>"; };
+		8748A46D2BF3BDF3000A1B01 /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
+		8748A46F2BF3BFB1000A1B01 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +62,12 @@
 			isa = PBXGroup;
 			children = (
 				8748A4592BF2718B000A1B01 /* MoonShotApp.swift */,
+				8748A46F2BF3BFB1000A1B01 /* PracticeView.swift */,
 				8748A45B2BF2718B000A1B01 /* ContentView.swift */,
+				8748A46B2BF3BD9D000A1B01 /* Astronaut.swift */,
+				8748A46D2BF3BDF3000A1B01 /* Bundle+Ext.swift */,
+				8748A4682BF3BCF3000A1B01 /* astronauts.json */,
+				8748A4672BF3BCF3000A1B01 /* missions.json */,
 				8748A45D2BF2718C000A1B01 /* Assets.xcassets */,
 				8748A45F2BF2718C000A1B01 /* Preview Content */,
 			);
@@ -126,7 +141,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8748A4612BF2718C000A1B01 /* Preview Assets.xcassets in Resources */,
+				8748A4692BF3BCF3000A1B01 /* missions.json in Resources */,
 				8748A45E2BF2718C000A1B01 /* Assets.xcassets in Resources */,
+				8748A46A2BF3BCF3000A1B01 /* astronauts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8748A46C2BF3BD9D000A1B01 /* Astronaut.swift in Sources */,
+				8748A4702BF3BFB1000A1B01 /* PracticeView.swift in Sources */,
+				8748A46E2BF3BDF3000A1B01 /* Bundle+Ext.swift in Sources */,
 				8748A45C2BF2718B000A1B01 /* ContentView.swift in Sources */,
 				8748A45A2BF2718B000A1B01 /* MoonShotApp.swift in Sources */,
 			);
