@@ -87,10 +87,6 @@ struct PracticeView: View {
             }
         }
         
-        
-        
-        
-        
     }
 }
 
