@@ -38,7 +38,14 @@ struct MissionView: View {
                         width * 0.6
                     }
                 
+                // Add launch date underneath mission badge
+                Text("\(mission.missionFormattedDate)")
+                    .font(.title3.bold())
+                    .padding(.top)
+                    .lineLimit(1)
+                
                 VStack(alignment: .leading) {
+                   
                     Rectangle()
                         .frame(height: 2)
                         .foregroundStyle(.lightBackground)
