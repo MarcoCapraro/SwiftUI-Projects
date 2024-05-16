@@ -7,10 +7,40 @@
 
 import SwiftUI
 
-struct Student: Hashable {
-    let id = UUID()
-    let name: String
-    let age: Int
+@Observable
+class PathStore {
+    var path: NavigationPath {
+        didSet {
+            save()
+        }
+    }
+    
+    private let savePath = URL.documentsDirectory.appending(path: "SavedPath")
+    
+    init() {
+        // Find Path Records on Disc
+        if let data = try? Data(contentsOf: savePath) {
+            // Decode Path Records and set path
+            if let decoded = try? JSONDecoder().decode(NavigationPath.CodableRepresentation.self, from: data) {
+                path = NavigationPath(decoded)
+                return
+            }
+        }
+        
+        path = NavigationPath()
+    }
+    
+    func save() {
+        guard let representation = path.codable else { return }
+        
+        do {
+            let data = try JSONEncoder().encode(representation)
+            try data.write(to: savePath)
+        } catch {
+            fatalError("Failed to save navigation path")
+        }
+    }
+    
 }
 
 struct DetailView: View {
@@ -28,10 +58,20 @@ struct DetailView: View {
     }
 }
 
+struct DetailView2: View {
+    var number: Int
+        
+    var body: some View {
+        NavigationLink("Go to Random Number", value: Int.random(in: 1..<1000))
+            .navigationTitle("Number \(number)")
+    }
+}
+
 struct ContentView: View {
     @State private var path1 = [Int]()
     @State private var path2 = NavigationPath()
     @State private var path3 = NavigationPath()
+    @State private var pathStore = PathStore()
     
     var body: some View {
         VStack {
@@ -41,6 +81,14 @@ struct ContentView: View {
                         DetailView(number: i, path: $path3)
                     }
             }
+            
+            NavigationStack(path: $pathStore.path) {
+                DetailView2(number: 0)
+                    .navigationDestination(for: Int.self) { i in
+                        DetailView2(number: i)
+                    }
+            }
+            
             
             NavigationStack(path: $path2) {
                 List {
