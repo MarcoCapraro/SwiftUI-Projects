@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @State private var dynamicTitle = "SwiftUI Customization"
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,7 +18,7 @@ struct ContentView: View {
                         Text("Detail View")
                     }
                 }
-                .navigationTitle("Title Customization")
+                .navigationTitle($dynamicTitle)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbarBackground(.blue)
                 .toolbarColorScheme(.dark)
