@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Mission: Codable, Identifiable {
+struct Mission: Codable, Identifiable, Hashable {
+    
     // Can make this a nested struct since it's made specifically for Mission
-    struct CrewRole: Codable {
+    struct CrewRole: Codable, Hashable {
         let name: String
         let role: String
     }

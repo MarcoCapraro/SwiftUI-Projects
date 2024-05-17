@@ -14,9 +14,7 @@ struct ListLayoutView: View {
     var body: some View {
         List {
             ForEach(missions) { mission in
-                NavigationLink {
-                    MissionView(mission: mission, astronauts: astronauts)
-                } label: {
+                NavigationLink(value: mission) {
                     HStack() {
                         Image(mission.image)
                             .resizable()
@@ -31,10 +29,16 @@ struct ListLayoutView: View {
                         }
                     }
                 }
+                .navigationDestination(for: Mission.self) { mission in
+                    MissionView(mission: mission, astronauts: astronauts)
+                }
             }
             .listRowBackground(Color.darkBackground)
+            
         }
         .listStyle(.plain)
+        .preferredColorScheme(.dark)
+        
     }
 }
 
