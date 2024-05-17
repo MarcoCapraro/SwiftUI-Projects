@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8702B3DC2BF7D0E000AAC355 /* NavigationPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702B3DB2BF7D0E000AAC355 /* NavigationPathsView.swift */; };
 		873590822BF6981900B88C63 /* NavigationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873590812BF6981900B88C63 /* NavigationApp.swift */; };
 		873590842BF6981900B88C63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873590832BF6981900B88C63 /* ContentView.swift */; };
 		873590862BF6981A00B88C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 873590852BF6981A00B88C63 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8702B3DB2BF7D0E000AAC355 /* NavigationPathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPathsView.swift; sourceTree = "<group>"; };
 		8735907E2BF6981900B88C63 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		873590812BF6981900B88C63 /* NavigationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationApp.swift; sourceTree = "<group>"; };
 		873590832BF6981900B88C63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				873590812BF6981900B88C63 /* NavigationApp.swift */,
 				873590832BF6981900B88C63 /* ContentView.swift */,
+				8702B3DB2BF7D0E000AAC355 /* NavigationPathsView.swift */,
 				873590852BF6981A00B88C63 /* Assets.xcassets */,
 				873590872BF6981A00B88C63 /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873590842BF6981900B88C63 /* ContentView.swift in Sources */,
+				8702B3DC2BF7D0E000AAC355 /* NavigationPathsView.swift in Sources */,
 				873590822BF6981900B88C63 /* NavigationApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
