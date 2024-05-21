@@ -11,8 +11,8 @@ struct BorderStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .overlay {
-                Rectangle()
-                    .stroke(.black, lineWidth: 2)
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.white, lineWidth: 2)
             }
     }
 }
@@ -23,67 +23,84 @@ extension View {
     }
 }
 
+@Observable
+class Activities {
+    var activities: [Activity]
+    
+    init(activities: [Activity]) {
+        self.activities = activities
+    }
+}
+
 struct ContentView: View {
-    @State private var activities: [Activity] = [Activity(title: "Soccer Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "3:40", tag: "Fitness"), Activity(title: "Tennis Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "5:00", tag: "Fitness"), Activity(title: "Basketball Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "12:30", tag: "Fitness")]
+    @State private var plans: Activities = Activities(activities: [Activity(title: "Soccer Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "3:40", tag: "Fitness"), Activity(title: "Tennis Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "5:00", tag: "Fitness"), Activity(title: "Basketball Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "12:30", tag: "Fitness")])
+    @State private var isShowingAdd = false
+    
+
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 0) {
-                    ForEach(activities, id: \.self) { activity in
-                        NavigationLink {
-                            Text("Detail View")
-                        } label : {
-                            HStack(spacing: 0) {
-                                VStack(alignment: .leading) {
-                                    Text(activity.title)
-                                        .font(.title2.bold())
-                                    Text("\(activity.date) @ \(activity.time)")
-                                        .font(.title3)
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                                
-                                // PlaceHolder for Activity Type
-                                VStack(alignment: .center) {
-                                    Text(activity.tag)
-                                        .font(.headline)
-                                        .frame(maxWidth: .infinity)
-                                    Image(systemName: "clock")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .containerRelativeFrame(.horizontal) { width, axis in
-                                            width * 0.1
-                                        }
-                                }
-                                .frame(maxWidth: 100)
-                                .padding(.bottom, 5)
-                                .borderStyle()
+            Form {
+                List {
+                    ForEach(plans.activities) { activity in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(activity.title)
+                                    .font(.title2.bold())
+                                    .lineLimit(1)
+                                Text("\(activity.date) @ \(activity.time)")
+                                    .font(.title3)
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            
+                            VStack(alignment: .center) {
+                                Text(activity.tag)
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                                Image(systemName: "clock")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .containerRelativeFrame(.horizontal) { width, axis in
+                                        width * 0.1
+                                    }
+                                    .padding(.bottom, 5)
+                            }
+                            .frame(maxWidth: 75)
+                            .borderStyle()
                         }
-                        .foregroundStyle(.black)
+                        .frame(maxHeight: 75)
+                        .background(
+                            NavigationLink("", destination: Text("Detail View"))
+                                .opacity(0)
+                        )
                     }
                     .onDelete(perform: removeItem)
-                    .clipShape(.rect)
-                    .borderStyle()
-                    .padding(5)
+                    .listRowBackground(Color.indigo)
+                    .listRowSeparatorTint(.black)
                 }
+            }
+            .sheet(isPresented: $isShowingAdd) {
+                AddActivityView()
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Pocket Planning")
+                    Text("Pocket Planner")
                         .font(.title.bold())
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add Activity", systemImage: "plus") { }
+                    Button("Add Activity", systemImage: "plus") { 
+                        isShowingAdd.toggle()
+                    }
                 }
             }
-            .preferredColorScheme(.light)
+            .preferredColorScheme(.dark)
         }
 
     }
     
     func removeItem(at offsets: IndexSet) {
-        activities.remove(atOffsets: offsets)
+        plans.activities.remove(atOffsets: offsets)
     }
 }
 

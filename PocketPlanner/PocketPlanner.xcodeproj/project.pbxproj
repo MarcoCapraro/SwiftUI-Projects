@@ -12,6 +12,7 @@
 		8702B3EE2BFBDDFD00AAC355 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8702B3ED2BFBDDFD00AAC355 /* Assets.xcassets */; };
 		8702B3F12BFBDDFD00AAC355 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8702B3F02BFBDDFD00AAC355 /* Preview Assets.xcassets */; };
 		8702B3F82BFBEB1600AAC355 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702B3F72BFBEB1600AAC355 /* Activity.swift */; };
+		87366DFF2BFD402700034319 /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87366DFE2BFD402700034319 /* AddActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		8702B3ED2BFBDDFD00AAC355 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8702B3F02BFBDDFD00AAC355 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8702B3F72BFBEB1600AAC355 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		87366DFE2BFD402700034319 /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +57,10 @@
 			children = (
 				8702B3E92BFBDDFC00AAC355 /* PocketPlannerApp.swift */,
 				8702B3EB2BFBDDFC00AAC355 /* ContentView.swift */,
+				8702B3F72BFBEB1600AAC355 /* Activity.swift */,
 				8702B3ED2BFBDDFD00AAC355 /* Assets.xcassets */,
 				8702B3EF2BFBDDFD00AAC355 /* Preview Content */,
-				8702B3F72BFBEB1600AAC355 /* Activity.swift */,
+				87366DFE2BFD402700034319 /* AddActivityView.swift */,
 			);
 			path = PocketPlanner;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8702B3F82BFBEB1600AAC355 /* Activity.swift in Sources */,
+				87366DFF2BFD402700034319 /* AddActivityView.swift in Sources */,
 				8702B3EC2BFBDDFC00AAC355 /* ContentView.swift in Sources */,
 				8702B3EA2BFBDDFC00AAC355 /* PocketPlannerApp.swift in Sources */,
 			);
