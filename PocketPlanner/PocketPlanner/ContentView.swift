@@ -25,18 +25,29 @@ extension View {
 
 @Observable
 class Activities {
-    var activities: [Activity]
+    var activities: [Activity] {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(activities) {
+                UserDefaults.standard.setValue(encoded, forKey: "Activities")
+            }
+        }
+    }
     
-    init(activities: [Activity]) {
-        self.activities = activities
+    init() {
+        if let savedActivities = UserDefaults.standard.data(forKey: "Activities") {
+            if let decoded = try? JSONDecoder().decode([Activity].self, from: savedActivities) {
+                self.activities = decoded
+                return
+            }
+        }
+        
+        self.activities = []
     }
 }
 
 struct ContentView: View {
-    @State private var plans: Activities = Activities(activities: [Activity(title: "Soccer Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "3:40", tag: "Fitness"), Activity(title: "Tennis Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "5:00", tag: "Fitness"), Activity(title: "Basketball Practice", description: "Follow Juventus Training Packet", date: "04/20/24", time: "12:30", tag: "Fitness")])
+    @State private var plans: Activities = Activities()
     @State private var isShowingAdd = false
-    
-
     
     var body: some View {
         NavigationStack {
@@ -56,22 +67,15 @@ struct ContentView: View {
                             
                             VStack(alignment: .center) {
                                 Text(activity.tag)
-                                    .font(.headline)
+                                    .font(.system(size: 50, weight: .bold))
                                     .frame(maxWidth: .infinity)
-                                Image(systemName: "clock")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .containerRelativeFrame(.horizontal) { width, axis in
-                                        width * 0.1
-                                    }
-                                    .padding(.bottom, 5)
                             }
                             .frame(maxWidth: 75)
                             .borderStyle()
                         }
                         .frame(maxHeight: 75)
                         .background(
-                            NavigationLink("", destination: Text("Detail View"))
+                            NavigationLink("", destination: ActivityDetailView(activity: activity))
                                 .opacity(0)
                         )
                     }
@@ -81,7 +85,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $isShowingAdd) {
-                AddActivityView()
+                AddActivityView(activities: plans)
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

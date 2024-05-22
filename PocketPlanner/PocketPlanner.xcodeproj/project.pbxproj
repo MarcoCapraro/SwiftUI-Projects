@@ -13,6 +13,7 @@
 		8702B3F12BFBDDFD00AAC355 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8702B3F02BFBDDFD00AAC355 /* Preview Assets.xcassets */; };
 		8702B3F82BFBEB1600AAC355 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702B3F72BFBEB1600AAC355 /* Activity.swift */; };
 		87366DFF2BFD402700034319 /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87366DFE2BFD402700034319 /* AddActivityView.swift */; };
+		87366E012BFE8E9D00034319 /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87366E002BFE8E9D00034319 /* ActivityDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		8702B3F02BFBDDFD00AAC355 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8702B3F72BFBEB1600AAC355 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		87366DFE2BFD402700034319 /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
+		87366E002BFE8E9D00034319 /* ActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				8702B3ED2BFBDDFD00AAC355 /* Assets.xcassets */,
 				8702B3EF2BFBDDFD00AAC355 /* Preview Content */,
 				87366DFE2BFD402700034319 /* AddActivityView.swift */,
+				87366E002BFE8E9D00034319 /* ActivityDetailView.swift */,
 			);
 			path = PocketPlanner;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				8702B3F82BFBEB1600AAC355 /* Activity.swift in Sources */,
 				87366DFF2BFD402700034319 /* AddActivityView.swift in Sources */,
 				8702B3EC2BFBDDFC00AAC355 /* ContentView.swift in Sources */,
+				87366E012BFE8E9D00034319 /* ActivityDetailView.swift in Sources */,
 				8702B3EA2BFBDDFC00AAC355 /* PocketPlannerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
