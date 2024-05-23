@@ -16,6 +16,7 @@ struct ActivityDetailView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 Text(activity.description)
+                    .underline(color: .lightGray)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .padding([.horizontal, .vertical], 50)
                     .borderStyle(color: .white)
