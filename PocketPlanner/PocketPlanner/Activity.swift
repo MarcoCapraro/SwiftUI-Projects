@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct Activity: Hashable, Identifiable, Codable {
+struct Activity: Hashable, Identifiable, Codable, Equatable {
     var id = UUID()
     var title: String
     var description: String
     var date: String
     var time: String
     var tag: String
+    var completionCount: Int
 }

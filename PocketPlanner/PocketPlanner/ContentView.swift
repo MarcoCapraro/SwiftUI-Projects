@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct BorderStyle: ViewModifier {
+    var color: Color
+    
     func body(content: Content) -> some View {
         content
             .overlay {
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(.white, lineWidth: 2)
+                    .stroke(color, lineWidth: 2)
             }
     }
 }
 
 extension View {
-    func borderStyle() -> some View {
-        modifier(BorderStyle())
+    func borderStyle(color: Color) -> some View {
+        modifier(BorderStyle(color: color))
     }
 }
 
@@ -71,17 +73,18 @@ struct ContentView: View {
                                     .frame(maxWidth: .infinity)
                             }
                             .frame(maxWidth: 75)
-                            .borderStyle()
+                            .borderStyle(color: .black)
                         }
                         .frame(maxHeight: 75)
                         .background(
-                            NavigationLink("", destination: ActivityDetailView(activity: activity))
+                            NavigationLink("", destination: ActivityDetailView(plans: plans, activity: activity))
                                 .opacity(0)
                         )
                     }
                     .onDelete(perform: removeItem)
-                    .listRowBackground(Color.indigo)
+                    .listRowBackground(Color.lightGray)
                     .listRowSeparatorTint(.black)
+                    .foregroundStyle(.black)
                 }
             }
             .sheet(isPresented: $isShowingAdd) {
@@ -91,6 +94,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .principal) {
                     Text("Pocket Planner")
                         .font(.title.bold())
+                        .foregroundStyle(Color.lightGray)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add Activity", systemImage: "plus") { 
@@ -100,7 +104,6 @@ struct ContentView: View {
             }
             .preferredColorScheme(.dark)
         }
-
     }
     
     func removeItem(at offsets: IndexSet) {
