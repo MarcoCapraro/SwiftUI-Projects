@@ -21,15 +21,32 @@ struct ContentView: View {
     @State private var results = [Result]()
     
     var body: some View {
-        List(results, id: \.trackId) { result in
-            VStack(alignment: .leading) {
-                Text(result.trackName)
-                    .font(.headline)
-                Text(result.collectionName)
+        
+        VStack {
+            AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } else if phase.error != nil {
+                    Text("There was an error loading the image")
+                } else {
+                    ProgressView()
+                }
             }
-        }
-        .task {
-            await loadData()
+            .frame(width: 200, height: 200)
+            
+            
+            List(results, id: \.trackId) { result in
+                VStack(alignment: .leading) {
+                    Text(result.trackName)
+                        .font(.headline)
+                    Text(result.collectionName)
+                }
+            }
+            .task {
+                await loadData()
+            }
         }
     }
     
