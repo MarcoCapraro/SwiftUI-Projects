@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+@Observable
+class User: Codable {
+    enum CodingKeys: String, CodingKey {
+        case _name = "name"
+    }
+    
+    var name = "Taylor"
+}
+
 struct Response: Codable {
     var results: [Result]
 }
@@ -19,34 +28,57 @@ struct Result: Codable {
 
 struct ContentView: View {
     @State private var results = [Result]()
+    @State private var username = ""
+    @State private var email = ""
+    
+    var disableForm: Bool {
+        return username.count < 5 || email.count < 5
+    }
     
     var body: some View {
         
-        VStack {
-            AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } else if phase.error != nil {
-                    Text("There was an error loading the image")
-                } else {
-                    ProgressView()
+        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { phase in
+            if let image = phase.image {
+                image
+                    .resizable()
+                    .scaledToFit()
+            } else if phase.error != nil {
+                Text("There was an error loading the image")
+            } else {
+                ProgressView()
+            }
+        }
+        .frame(width: 200, height: 200)
+        
+        Form {
+            Section {
+                TextField("Username", text: $username)
+                TextField("Email", text: $email)
+            }
+            
+            Section {
+                Button("Create Account") {
+                    print("Creating new account")
+                }
+                .disabled(disableForm)
+            }
+            
+            Section {
+                Button("Encode Taylor", action: encodeTaylor)
+            }
+            
+            List {
+                ForEach(results, id: \.trackId) { result in
+                    VStack(alignment: .leading) {
+                        Text(result.trackName)
+                            .font(.headline)
+                        Text(result.collectionName)
+                    }
                 }
             }
-            .frame(width: 200, height: 200)
-            
-            
-            List(results, id: \.trackId) { result in
-                VStack(alignment: .leading) {
-                    Text(result.trackName)
-                        .font(.headline)
-                    Text(result.collectionName)
-                }
-            }
-            .task {
-                await loadData()
-            }
+        }
+        .task {
+            await loadData()
         }
     }
     
@@ -69,8 +101,12 @@ struct ContentView: View {
         } catch {
             print("Invalid Data")
         }
-        
-        
+    }
+    
+    func encodeTaylor() {
+        let data = try! JSONEncoder().encode(User())
+        let str = String(decoding: data, as: UTF8.self)
+        print(str)
     }
 }
 
