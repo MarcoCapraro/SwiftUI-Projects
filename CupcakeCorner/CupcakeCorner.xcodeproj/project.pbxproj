@@ -65,10 +65,10 @@
 				87366E122C0A3F6800034319 /* ContentView.swift */,
 				87D668C72C0E70660047735A /* AddressView.swift */,
 				87D483FB2C0FAF7F00771FB9 /* CheckoutView.swift */,
+				87D668C52C0E6CE40047735A /* Order.swift */,
 				87366E142C0A3F6B00034319 /* Assets.xcassets */,
 				87366E222C0E6BDD00034319 /* PracticeViews */,
 				87366E162C0A3F6B00034319 /* Preview Content */,
-				87D668C52C0E6CE40047735A /* Order.swift */,
 			);
 			path = CupcakeCorner;
 			sourceTree = "<group>";
