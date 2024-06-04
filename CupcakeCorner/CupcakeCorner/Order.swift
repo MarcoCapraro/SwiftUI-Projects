@@ -26,4 +26,17 @@ class Order {
     
     var extraFrosting = false
     var addSprinkles = false
+    
+    var name = ""
+    var street = ""
+    var city = ""
+    var zip = ""
+    
+    var hasValidAddress: Bool {
+        if name.isEmpty || street.isEmpty || city.isEmpty || zip.isEmpty {
+            return false
+        }
+        
+        return true
+    }
 }
