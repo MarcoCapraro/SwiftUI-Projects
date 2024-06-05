@@ -70,7 +70,7 @@ struct CheckoutView: View {
             confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
             activeAlert = .first
         } catch {
-            confirmationMessage = "Check out failed: \(error.localizedDescription)"
+            confirmationMessage = "Order checkout failed: \(error.localizedDescription)"
             activeAlert = .second
         }
         

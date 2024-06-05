@@ -40,13 +40,13 @@ class Order: Codable {
     var extraFrosting = false
     var addSprinkles = false
     
-    var name = ""
-    var street = ""
-    var city = ""
-    var zip = ""
+    // Address Details
+    var name: String = "" { didSet { UserDefaults.standard.setValue(name, forKey: "AddressName") } }
+    var street: String = "" { didSet { UserDefaults.standard.setValue(street, forKey: "AddressStreet") } }
+    var city: String = "" { didSet { UserDefaults.standard.setValue(city, forKey: "AddressCity") } }
+    var zip: String = "" { didSet { UserDefaults.standard.setValue(zip, forKey: "AddressZip") } }
     
     var hasValidAddress: Bool {
-        
         // Make sure a string of pure whitespaces is invalid along with empty strings
         let nameEmpty = (name.trimmingCharacters(in: .whitespaces).count == 0) || name.isEmpty
         let streetEmpty = (street.trimmingCharacters(in: .whitespaces).count == 0) || street.isEmpty
@@ -78,5 +78,14 @@ class Order: Codable {
         }
         
         return cost
+    }
+    
+    // UserDefaults stores address if inputed already by User
+    init() {
+        // Setup UserDefault to retrieve any saved address data if available otherwise leave empty
+        if let name = UserDefaults.standard.string(forKey: "AddressName") { self.name = name }
+        if let street = UserDefaults.standard.string(forKey: "AddressStreet") { self.street = street }
+        if let city = UserDefaults.standard.string(forKey: "AddressCity") { self.city = city }
+        if let zip = UserDefaults.standard.string(forKey: "AddressZip") { self.zip = zip }
     }
 }
