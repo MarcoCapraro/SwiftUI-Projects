@@ -5,7 +5,8 @@
 //  Created by Marco Capraro on 6/3/24.
 //
 
-import Foundation
+import Observation
+import SwiftUI
 
 @Observable
 class Order: Codable {
@@ -45,7 +46,14 @@ class Order: Codable {
     var zip = ""
     
     var hasValidAddress: Bool {
-        if name.isEmpty || street.isEmpty || city.isEmpty || zip.isEmpty {
+        
+        // Make sure a string of pure whitespaces is invalid along with empty strings
+        let nameEmpty = (name.trimmingCharacters(in: .whitespaces).count == 0) || name.isEmpty
+        let streetEmpty = (street.trimmingCharacters(in: .whitespaces).count == 0) || street.isEmpty
+        let cityEmpty = (city.trimmingCharacters(in: .whitespaces).count == 0) || city.isEmpty
+        let zipEmpty = (zip.trimmingCharacters(in: .whitespaces).count == 0) || zip.isEmpty
+
+        if nameEmpty || streetEmpty || cityEmpty || zipEmpty {
             return false
         }
         

@@ -7,9 +7,14 @@
 
 import SwiftUI
 
+enum ActiveAlert {
+    case first, second
+}
+
 struct CheckoutView: View {
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
+    @State private var activeAlert: ActiveAlert = .first
     var order: Order
     
     var body: some View {
@@ -32,13 +37,13 @@ struct CheckoutView: View {
                         await placeOrder()
                     }
                 }
-                    .padding()
+                .padding()
             }
         }
         .navigationTitle("Checkout")
         .navigationBarTitleDisplayMode(.inline)
         .scrollBounceBehavior(.basedOnSize)
-        .alert("Thank you!", isPresented: $showingConfirmation) {
+        .alert(activeAlert == .first ? "Thank you!": "Uh Oh!", isPresented: $showingConfirmation) {
             Button("OK") {}
         } message: {
             Text(confirmationMessage)
@@ -63,11 +68,13 @@ struct CheckoutView: View {
             // handle result
             let decodedOrder = try JSONDecoder().decode(Order.self, from: data)
             confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
-            showingConfirmation = true
+            activeAlert = .first
         } catch {
-            print("Check out failed \(error.localizedDescription)")
+            confirmationMessage = "Check out failed: \(error.localizedDescription)"
+            activeAlert = .second
         }
-        //
+        
+        showingConfirmation = true
     }
 }
 
