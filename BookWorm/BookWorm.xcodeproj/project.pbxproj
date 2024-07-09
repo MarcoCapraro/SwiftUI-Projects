@@ -13,6 +13,8 @@
 		87D484112C124DE700771FB9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87D484102C124DE700771FB9 /* Preview Assets.xcassets */; };
 		87D4841A2C12584F00771FB9 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D484192C12584F00771FB9 /* PracticeView.swift */; };
 		87D4841C2C1258B600771FB9 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4841B2C1258B600771FB9 /* Student.swift */; };
+		87FD07542C3DB3520046D05A /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FD07532C3DB3520046D05A /* Book.swift */; };
+		87FD07562C3DB49C0046D05A /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FD07552C3DB49C0046D05A /* AddBookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		87D484102C124DE700771FB9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		87D484192C12584F00771FB9 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
 		87D4841B2C1258B600771FB9 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		87FD07532C3DB3520046D05A /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		87FD07552C3DB49C0046D05A /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,8 @@
 			children = (
 				87D484092C124DE600771FB9 /* BookWormApp.swift */,
 				87D4840B2C124DE600771FB9 /* ContentView.swift */,
-				87D4841B2C1258B600771FB9 /* Student.swift */,
+				87FD07552C3DB49C0046D05A /* AddBookView.swift */,
+				87FD07532C3DB3520046D05A /* Book.swift */,
 				87D4840D2C124DE700771FB9 /* Assets.xcassets */,
 				87D484182C12582D00771FB9 /* PracticeViews */,
 				87D4840F2C124DE700771FB9 /* Preview Content */,
@@ -77,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				87D484192C12584F00771FB9 /* PracticeView.swift */,
+				87D4841B2C1258B600771FB9 /* Student.swift */,
 			);
 			path = PracticeViews;
 			sourceTree = "<group>";
@@ -152,8 +158,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D4840C2C124DE600771FB9 /* ContentView.swift in Sources */,
+				87FD07562C3DB49C0046D05A /* AddBookView.swift in Sources */,
 				87D4841A2C12584F00771FB9 /* PracticeView.swift in Sources */,
 				87D4840A2C124DE600771FB9 /* BookWormApp.swift in Sources */,
+				87FD07542C3DB3520046D05A /* Book.swift in Sources */,
 				87D4841C2C1258B600771FB9 /* Student.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
