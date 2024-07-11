@@ -13,11 +13,11 @@ struct AddBookView: View {
     
     @State private var title = ""
     @State private var author = ""
-    @State private var genre = "Fantasy"
+    @State private var genre = ""
     @State private var review = ""
     @State private var rating = 3
     
-    let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
+    let genres = ["", "Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
 
     var body: some View {
         NavigationStack {
@@ -40,7 +40,7 @@ struct AddBookView: View {
                 
                 Section("Finalize BookWorm") {
                     Button("Save") {
-                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating)
+                        let newBook = validateBook(title: title, author: author, genre: genre, review: review, rating: rating)
                         modelContext.insert(newBook)
                         dismiss()
                     }
@@ -48,6 +48,15 @@ struct AddBookView: View {
             }
             .navigationTitle("Add Book")
         }
+    }
+    
+    func validateBook(title: String, author: String, genre: String, review: String, rating: Int) -> Book {
+        let title = title.isEmpty ? "N/A" : title
+        let author = author.isEmpty ? "N/A" : author
+        let genre = genre.isEmpty ? "Invalid Genre" : genre
+        let review = review.isEmpty ? "No review provided" : review
+        
+        return Book(title: title, author: author, genre: genre, review: review, rating: rating)
     }
 }
 
