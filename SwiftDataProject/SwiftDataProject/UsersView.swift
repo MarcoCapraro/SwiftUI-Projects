@@ -20,7 +20,7 @@ struct UsersView: View {
                 Spacer()
                 
                 Text(user.joinDate.formatted(date: .abbreviated, time: .omitted))
-                Text(String(user.jobs.count))
+                Text(String(user.unwrappedJobs.count))
                     .fontWeight(.black)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
@@ -45,8 +45,8 @@ struct UsersView: View {
         let job2 = Job(name: "Make plans with Ryan", priority: 4)
         
         modelContext.insert(user1)
-        user1.jobs.append(job1)
-        user1.jobs.append(job2)
+        user1.jobs?.append(job1)
+        user1.jobs?.append(job2)
     }
 }
 
