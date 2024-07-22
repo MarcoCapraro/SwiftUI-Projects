@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		87464DF22C4F1C7E00247678 /* ImageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87464DF12C4F1C7E00247678 /* ImageFilterView.swift */; };
+		87464DF42C4F1D3600247678 /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87464DF32C4F1D3600247678 /* UnavailableView.swift */; };
 		8773038F2C4AEB28007B9F1B /* InstaFilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8773038E2C4AEB28007B9F1B /* InstaFilterApp.swift */; };
 		877303912C4AEB28007B9F1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877303902C4AEB28007B9F1B /* ContentView.swift */; };
 		877303932C4AEB29007B9F1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 877303922C4AEB29007B9F1B /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		87464DF12C4F1C7E00247678 /* ImageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterView.swift; sourceTree = "<group>"; };
+		87464DF32C4F1D3600247678 /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
 		8773038B2C4AEB28007B9F1B /* InstaFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8773038E2C4AEB28007B9F1B /* InstaFilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaFilterApp.swift; sourceTree = "<group>"; };
 		877303902C4AEB28007B9F1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				8773039E2C4AED64007B9F1B /* PracticeView.swift */,
 				87464DF12C4F1C7E00247678 /* ImageFilterView.swift */,
+				87464DF32C4F1D3600247678 /* UnavailableView.swift */,
 			);
 			path = "Practice Views";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			files = (
 				87464DF22C4F1C7E00247678 /* ImageFilterView.swift in Sources */,
 				877303912C4AEB28007B9F1B /* ContentView.swift in Sources */,
+				87464DF42C4F1D3600247678 /* UnavailableView.swift in Sources */,
 				8773039F2C4AED64007B9F1B /* PracticeView.swift in Sources */,
 				8773038F2C4AEB28007B9F1B /* InstaFilterApp.swift in Sources */,
 			);
