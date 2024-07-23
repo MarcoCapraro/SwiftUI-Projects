@@ -12,6 +12,7 @@
 		87464DF62C503DC200247678 /* ConfirmationDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87464DF52C503DC200247678 /* ConfirmationDialogView.swift */; };
 		87464DF82C503DF400247678 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87464DF72C503DF400247678 /* PhotoPickerView.swift */; };
 		87464DFA2C503E2600247678 /* ShareLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87464DF92C503E2600247678 /* ShareLinkView.swift */; };
+		87464DFC2C50434A00247678 /* AppReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87464DFB2C50434A00247678 /* AppReviewView.swift */; };
 		8773038F2C4AEB28007B9F1B /* InstaFilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8773038E2C4AEB28007B9F1B /* InstaFilterApp.swift */; };
 		877303912C4AEB28007B9F1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877303902C4AEB28007B9F1B /* ContentView.swift */; };
 		877303932C4AEB29007B9F1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 877303922C4AEB29007B9F1B /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		87464DF52C503DC200247678 /* ConfirmationDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogView.swift; sourceTree = "<group>"; };
 		87464DF72C503DF400247678 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		87464DF92C503E2600247678 /* ShareLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkView.swift; sourceTree = "<group>"; };
+		87464DFB2C50434A00247678 /* AppReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewView.swift; sourceTree = "<group>"; };
 		8773038B2C4AEB28007B9F1B /* InstaFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8773038E2C4AEB28007B9F1B /* InstaFilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaFilterApp.swift; sourceTree = "<group>"; };
 		877303902C4AEB28007B9F1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				87464DF52C503DC200247678 /* ConfirmationDialogView.swift */,
 				87464DF72C503DF400247678 /* PhotoPickerView.swift */,
 				87464DF92C503E2600247678 /* ShareLinkView.swift */,
+				87464DFB2C50434A00247678 /* AppReviewView.swift */,
 			);
 			path = "Practice Views";
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				87464DF82C503DF400247678 /* PhotoPickerView.swift in Sources */,
 				877303912C4AEB28007B9F1B /* ContentView.swift in Sources */,
 				87464DF42C4F1D3600247678 /* UnavailableView.swift in Sources */,
+				87464DFC2C50434A00247678 /* AppReviewView.swift in Sources */,
 				8773038F2C4AEB28007B9F1B /* InstaFilterApp.swift in Sources */,
 				87464DF62C503DC200247678 /* ConfirmationDialogView.swift in Sources */,
 				87464DFA2C503E2600247678 /* ShareLinkView.swift in Sources */,
