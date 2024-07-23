@@ -5,15 +5,38 @@
 //  Created by Marco Capraro on 7/19/24.
 //
 
+import PhotosUI
 import SwiftUI
 
 struct ContentView: View {
+    @State private var pickerItems = [PhotosPickerItem]()
+    @State private var selectedImages = [Image]()
     
     var body: some View {
         VStack {
-            Text("Hello, World")
+            PhotosPicker(selection: $pickerItems, maxSelectionCount: 5, matching: .any(of: [.images, .not(.screenshots)])) {
+                Label("Select a picture", systemImage: "photo")
+            }
+            
+            ScrollView {
+                ForEach(0..<selectedImages.count, id:\.self) { i in
+                    selectedImages[i]
+                        .resizable()
+                        .scaledToFit()
+                }
+            }
+            
         }
-        .padding()
+        .onChange(of: pickerItems) {
+            Task {
+                selectedImages.removeAll()
+                for item in pickerItems {
+                    if let loadedImage = try await item.loadTransferable(type: Image.self) {
+                        selectedImages.append(loadedImage)
+                    }
+                }
+            }
+        }
     }
 }
 
