@@ -1,14 +1,13 @@
 //
-//  PracticeView.swift
+//  ConfirmationDialogView.swift
 //  InstaFilter
 //
-//  Created by Marco Capraro on 7/19/24.
+//  Created by Marco Capraro on 7/23/24.
 //
-
 
 import SwiftUI
 
-struct PracticeView: View {
+struct ConfirmationDialogView: View {
     @State private var blurAmount = 0.0
 //      Doesn't work with slider binded value, need to write onChange function
 //        didSet {
@@ -62,6 +61,5 @@ struct PracticeView: View {
 }
 
 #Preview {
-    PracticeView()
+    ConfirmationDialogView()
 }
-
