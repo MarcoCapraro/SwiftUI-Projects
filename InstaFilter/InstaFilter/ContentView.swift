@@ -18,6 +18,8 @@ struct ContentView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var processedImage: Image?
     @State private var filterIntensity = 0.5
+    @State private var filterRadius = 0.5
+    @State private var filterScale = 0.5
     @State private var showFilters = false
     
     @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
@@ -42,13 +44,28 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                HStack {
-                    Text("Intensity")
-                    // Intensity Slider 0-1
-                    Slider(value: $filterIntensity)
-                        .onChange(of: filterIntensity, applyProcessing)
-                        .disabled(processedImage == nil ? true : false)
+                VStack {
+                    HStack {
+                        Text("Intensity")
+                        // Intensity Slider 0-1
+                        Slider(value: $filterIntensity)
+                            .onChange(of: filterIntensity, applyProcessing)
+                    }
+                    
+                    HStack {
+                        Text("Radius")
+                        Slider(value: $filterRadius)
+                            .onChange(of: filterRadius, applyProcessing)
+                    }
+                    
+                    HStack {
+                        Text("Scale")
+                        Slider(value: $filterScale)
+                            .onChange(of: filterScale, applyProcessing)
+                    }
                 }
+                .disabled(processedImage == nil ? true : false)
+                .padding()
                 
 
                 
@@ -63,6 +80,9 @@ struct ContentView: View {
                             Button("Sepia Tone") { setFilter(.sepiaTone()) }
                             Button("Unsharp Mask") { setFilter(.unsharpMask()) }
                             Button("Vignette") { setFilter(.vignette()) }
+                            Button("Noir") { setFilter(.photoEffectNoir())}
+                            Button("Bloom") { setFilter(.bloom())}
+                            Button("Comic") { setFilter(.comicEffect())}
                             Button("Cancel", role: .cancel) {}
 
                         }
@@ -97,9 +117,18 @@ struct ContentView: View {
     func applyProcessing() {
         let inputKeys = currentFilter.inputKeys
         
-        if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey)}
-        if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(filterIntensity * 200, forKey: kCIInputRadiusKey)}
-        if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(filterIntensity * 10, forKey: kCIInputScaleKey)}
+    
+        if inputKeys.contains(kCIInputIntensityKey) {
+            currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey)
+        }
+        
+        if inputKeys.contains(kCIInputRadiusKey) {
+            currentFilter.setValue(filterRadius * 200, forKey: kCIInputRadiusKey)
+        }
+        
+        if inputKeys.contains(kCIInputScaleKey) {
+            currentFilter.setValue(filterScale * 10, forKey: kCIInputScaleKey)
+        }
 
         
         guard let outputImage = currentFilter.outputImage else { return }
@@ -114,7 +143,7 @@ struct ContentView: View {
         filterCount += 1
         loadImage()
         
-        if filterCount >= 20 {
+        if filterCount >= 1000 {
             requestReview()
         }
     }
