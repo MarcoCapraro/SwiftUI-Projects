@@ -47,7 +47,10 @@ struct ContentView: View {
                     // Intensity Slider 0-1
                     Slider(value: $filterIntensity)
                         .onChange(of: filterIntensity, applyProcessing)
+                        .disabled(processedImage == nil ? true : false)
                 }
+                
+
                 
                 HStack {
                     Button("Change Filter", action: changeFilter)
@@ -63,6 +66,7 @@ struct ContentView: View {
                             Button("Cancel", role: .cancel) {}
 
                         }
+                        .disabled(processedImage == nil ? true : false)
                     
                     Spacer()
                     
