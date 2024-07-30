@@ -13,6 +13,7 @@
 		871D49202C583C170023B9D5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871D491F2C583C170023B9D5 /* Preview Assets.xcassets */; };
 		871D492A2C58457B0023B9D5 /* DataToDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D49292C58457B0023B9D5 /* DataToDocView.swift */; };
 		871D492C2C5845840023B9D5 /* CompSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492B2C5845840023B9D5 /* CompSortView.swift */; };
+		871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492D2C5873220023B9D5 /* EnumSwitchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		871D491F2C583C170023B9D5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		871D49292C58457B0023B9D5 /* DataToDocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataToDocView.swift; sourceTree = "<group>"; };
 		871D492B2C5845840023B9D5 /* CompSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompSortView.swift; sourceTree = "<group>"; };
+		871D492D2C5873220023B9D5 /* EnumSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumSwitchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		871D49262C583CB70023B9D5 /* Practice Views */ = {
 			isa = PBXGroup;
 			children = (
+				871D492D2C5873220023B9D5 /* EnumSwitchView.swift */,
 				871D49292C58457B0023B9D5 /* DataToDocView.swift */,
 				871D492B2C5845840023B9D5 /* CompSortView.swift */,
 			);
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */,
 				871D492C2C5845840023B9D5 /* CompSortView.swift in Sources */,
 				871D492A2C58457B0023B9D5 /* DataToDocView.swift in Sources */,
 				871D491B2C583C160023B9D5 /* ContentView.swift in Sources */,
