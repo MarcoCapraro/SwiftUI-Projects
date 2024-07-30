@@ -1,5 +1,5 @@
 //
-//  PracticeView.swift
+//  CompSortView.swift
 //  BucketList
 //
 //  Created by Marco Capraro on 7/29/24.
@@ -17,7 +17,7 @@ struct User: Comparable, Identifiable {
     }
 }
 
-struct PracticeView: View {
+struct CompSortView: View {
     let users = [
         User(firstName: "Arnold", lastName: "Rimmer"),
         User(firstName: "Kristine", lastName: "Kochanski"),
@@ -32,5 +32,5 @@ struct PracticeView: View {
 }
 
 #Preview {
-    PracticeView()
+    CompSortView()
 }
