@@ -15,6 +15,7 @@
 		871D492C2C5845840023B9D5 /* CompSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492B2C5845840023B9D5 /* CompSortView.swift */; };
 		871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492D2C5873220023B9D5 /* EnumSwitchView.swift */; };
 		871D49302C5A87820023B9D5 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492F2C5A87820023B9D5 /* MapKitView.swift */; };
+		871D49322C5AC6960023B9D5 /* TouchFaceIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D49312C5AC6960023B9D5 /* TouchFaceIdView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		871D492B2C5845840023B9D5 /* CompSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompSortView.swift; sourceTree = "<group>"; };
 		871D492D2C5873220023B9D5 /* EnumSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumSwitchView.swift; sourceTree = "<group>"; };
 		871D492F2C5A87820023B9D5 /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
+		871D49312C5AC6960023B9D5 /* TouchFaceIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchFaceIdView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				871D49292C58457B0023B9D5 /* DataToDocView.swift */,
 				871D492B2C5845840023B9D5 /* CompSortView.swift */,
 				871D492F2C5A87820023B9D5 /* MapKitView.swift */,
+				871D49312C5AC6960023B9D5 /* TouchFaceIdView.swift */,
 			);
 			path = "Practice Views";
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				871D49302C5A87820023B9D5 /* MapKitView.swift in Sources */,
+				871D49322C5AC6960023B9D5 /* TouchFaceIdView.swift in Sources */,
 				871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */,
 				871D492C2C5845840023B9D5 /* CompSortView.swift in Sources */,
 				871D492A2C58457B0023B9D5 /* DataToDocView.swift in Sources */,
@@ -299,6 +303,7 @@
 				DEVELOPMENT_TEAM = 759C7Y26H7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -328,6 +333,7 @@
 				DEVELOPMENT_TEAM = 759C7Y26H7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
