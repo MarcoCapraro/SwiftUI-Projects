@@ -14,6 +14,7 @@
 		871D492A2C58457B0023B9D5 /* DataToDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D49292C58457B0023B9D5 /* DataToDocView.swift */; };
 		871D492C2C5845840023B9D5 /* CompSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492B2C5845840023B9D5 /* CompSortView.swift */; };
 		871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492D2C5873220023B9D5 /* EnumSwitchView.swift */; };
+		871D49302C5A87820023B9D5 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492F2C5A87820023B9D5 /* MapKitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		871D49292C58457B0023B9D5 /* DataToDocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataToDocView.swift; sourceTree = "<group>"; };
 		871D492B2C5845840023B9D5 /* CompSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompSortView.swift; sourceTree = "<group>"; };
 		871D492D2C5873220023B9D5 /* EnumSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumSwitchView.swift; sourceTree = "<group>"; };
+		871D492F2C5A87820023B9D5 /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				871D492D2C5873220023B9D5 /* EnumSwitchView.swift */,
 				871D49292C58457B0023B9D5 /* DataToDocView.swift */,
 				871D492B2C5845840023B9D5 /* CompSortView.swift */,
+				871D492F2C5A87820023B9D5 /* MapKitView.swift */,
 			);
 			path = "Practice Views";
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				871D49302C5A87820023B9D5 /* MapKitView.swift in Sources */,
 				871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */,
 				871D492C2C5845840023B9D5 /* CompSortView.swift in Sources */,
 				871D492A2C58457B0023B9D5 /* DataToDocView.swift in Sources */,
