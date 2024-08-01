@@ -16,6 +16,8 @@
 		871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492D2C5873220023B9D5 /* EnumSwitchView.swift */; };
 		871D49302C5A87820023B9D5 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D492F2C5A87820023B9D5 /* MapKitView.swift */; };
 		871D49322C5AC6960023B9D5 /* TouchFaceIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D49312C5AC6960023B9D5 /* TouchFaceIdView.swift */; };
+		871D49342C5C2F530023B9D5 /* UserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D49332C5C2F530023B9D5 /* UserLocationView.swift */; };
+		871D49372C5C35B40023B9D5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D49362C5C35B40023B9D5 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		871D492D2C5873220023B9D5 /* EnumSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumSwitchView.swift; sourceTree = "<group>"; };
 		871D492F2C5A87820023B9D5 /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
 		871D49312C5AC6960023B9D5 /* TouchFaceIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchFaceIdView.swift; sourceTree = "<group>"; };
+		871D49332C5C2F530023B9D5 /* UserLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationView.swift; sourceTree = "<group>"; };
+		871D49362C5C35B40023B9D5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +85,23 @@
 		871D49262C583CB70023B9D5 /* Practice Views */ = {
 			isa = PBXGroup;
 			children = (
+				871D49352C5C35A30023B9D5 /* Practice Models */,
 				871D492D2C5873220023B9D5 /* EnumSwitchView.swift */,
 				871D49292C58457B0023B9D5 /* DataToDocView.swift */,
 				871D492B2C5845840023B9D5 /* CompSortView.swift */,
 				871D492F2C5A87820023B9D5 /* MapKitView.swift */,
 				871D49312C5AC6960023B9D5 /* TouchFaceIdView.swift */,
+				871D49332C5C2F530023B9D5 /* UserLocationView.swift */,
 			);
 			path = "Practice Views";
+			sourceTree = "<group>";
+		};
+		871D49352C5C35A30023B9D5 /* Practice Models */ = {
+			isa = PBXGroup;
+			children = (
+				871D49362C5C35B40023B9D5 /* Location.swift */,
+			);
+			path = "Practice Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +178,8 @@
 				871D49322C5AC6960023B9D5 /* TouchFaceIdView.swift in Sources */,
 				871D492E2C5873220023B9D5 /* EnumSwitchView.swift in Sources */,
 				871D492C2C5845840023B9D5 /* CompSortView.swift in Sources */,
+				871D49372C5C35B40023B9D5 /* Location.swift in Sources */,
+				871D49342C5C2F530023B9D5 /* UserLocationView.swift in Sources */,
 				871D492A2C58457B0023B9D5 /* DataToDocView.swift in Sources */,
 				871D491B2C583C160023B9D5 /* ContentView.swift in Sources */,
 				871D49192C583C160023B9D5 /* BucketListApp.swift in Sources */,
