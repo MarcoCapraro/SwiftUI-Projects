@@ -7,6 +7,7 @@
 
 import CoreLocation
 import Foundation
+import LocalAuthentication
 import MapKit
 
 // ViewModel for ContentView
@@ -15,6 +16,7 @@ extension ContentView {
     class ViewModel {
         private(set) var locations: [Location]
         var selectedPlace: Location?
+        var isUnlocked = false
         
         // Can use this instead of UserDefaults
         // Able to write any amount of data into any number of files
@@ -51,6 +53,29 @@ extension ContentView {
             if let index = locations.firstIndex(of: selectedPlace) {
                 locations[index] = location
                 save()
+            }
+        }
+        
+        func authenticate() {
+            let context = LAContext()
+            var error: NSError?
+            
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                let reason = "Please authenticate yourself to unlock your places"
+                
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                    success, authenticationError in
+                    if success {
+                        // authenticated successfully
+                        self.isUnlocked = true
+                    } else {
+                        // there was a problem (make sure to have a backup plan)
+                        // maybe an alert
+                    }
+                    
+                }
+            } else {
+                // no biometrics
             }
         }
     }
