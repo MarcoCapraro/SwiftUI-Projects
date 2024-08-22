@@ -17,6 +17,8 @@ extension ContentView {
         private(set) var locations: [Location]
         var selectedPlace: Location?
         var isUnlocked = false
+        var isHybrid = false
+        var showAlert = false
         
         // Can use this instead of UserDefaults
         // Able to write any amount of data into any number of files
@@ -76,6 +78,7 @@ extension ContentView {
                 }
             } else {
                 // no biometrics
+                self.showAlert = true
             }
         }
     }
