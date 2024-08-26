@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870F17662C7D016700F5443D /* VoiceOverLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F17652C7D016700F5443D /* VoiceOverLabelView.swift */; };
 		8723FEB92C7CFA8C00E37087 /* AccessibilitySandboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723FEB82C7CFA8C00E37087 /* AccessibilitySandboxApp.swift */; };
 		8723FEBB2C7CFA8C00E37087 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723FEBA2C7CFA8C00E37087 /* ContentView.swift */; };
 		8723FEBD2C7CFA8D00E37087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723FEBC2C7CFA8D00E37087 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		870F17652C7D016700F5443D /* VoiceOverLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceOverLabelView.swift; sourceTree = "<group>"; };
 		8723FEB52C7CFA8C00E37087 /* AccessibilitySandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessibilitySandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723FEB82C7CFA8C00E37087 /* AccessibilitySandboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilitySandboxApp.swift; sourceTree = "<group>"; };
 		8723FEBA2C7CFA8C00E37087 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		8723FEC62C7CFA9800E37087 /* Practice */ = {
 			isa = PBXGroup;
 			children = (
+				870F17652C7D016700F5443D /* VoiceOverLabelView.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				870F17662C7D016700F5443D /* VoiceOverLabelView.swift in Sources */,
 				8723FEBB2C7CFA8C00E37087 /* ContentView.swift in Sources */,
 				8723FEB92C7CFA8C00E37087 /* AccessibilitySandboxApp.swift in Sources */,
 			);

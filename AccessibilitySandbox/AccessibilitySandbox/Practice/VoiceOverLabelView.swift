@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct VoiceOverLabelView: View {
     let pictures = [
         "ales-krivec-15949",
         "galina-n-189483",
@@ -25,16 +25,17 @@ struct ContentView: View {
     @State private var selectedPicture = Int.random(in: 0...3)
     
     var body: some View {
-        VStack {
-            Text("Your score is")
-            Text("1000")
-                .font(.title)
+        Button {
+            selectedPicture = Int.random(in: 0...3)
+        } label: {
+            Image(pictures[selectedPicture])
+                .resizable()
+                .scaledToFit()
         }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Your score is 1000")
+        .accessibilityLabel(labels[selectedPicture])
     }
 }
 
 #Preview {
-    ContentView()
+    VoiceOverLabelView()
 }
