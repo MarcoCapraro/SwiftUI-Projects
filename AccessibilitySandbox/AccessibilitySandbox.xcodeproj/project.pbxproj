@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		870F17662C7D016700F5443D /* VoiceOverLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F17652C7D016700F5443D /* VoiceOverLabelView.swift */; };
+		870F17682C7D025200F5443D /* AccessibilityDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F17672C7D025200F5443D /* AccessibilityDataView.swift */; };
+		870F176A2C7D055400F5443D /* AdjustableActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F17692C7D055400F5443D /* AdjustableActionView.swift */; };
 		8723FEB92C7CFA8C00E37087 /* AccessibilitySandboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723FEB82C7CFA8C00E37087 /* AccessibilitySandboxApp.swift */; };
 		8723FEBB2C7CFA8C00E37087 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8723FEBA2C7CFA8C00E37087 /* ContentView.swift */; };
 		8723FEBD2C7CFA8D00E37087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8723FEBC2C7CFA8D00E37087 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		870F17652C7D016700F5443D /* VoiceOverLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceOverLabelView.swift; sourceTree = "<group>"; };
+		870F17672C7D025200F5443D /* AccessibilityDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityDataView.swift; sourceTree = "<group>"; };
+		870F17692C7D055400F5443D /* AdjustableActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustableActionView.swift; sourceTree = "<group>"; };
 		8723FEB52C7CFA8C00E37087 /* AccessibilitySandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessibilitySandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8723FEB82C7CFA8C00E37087 /* AccessibilitySandboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilitySandboxApp.swift; sourceTree = "<group>"; };
 		8723FEBA2C7CFA8C00E37087 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				870F17652C7D016700F5443D /* VoiceOverLabelView.swift */,
+				870F17672C7D025200F5443D /* AccessibilityDataView.swift */,
+				870F17692C7D055400F5443D /* AdjustableActionView.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -150,7 +156,9 @@
 			files = (
 				870F17662C7D016700F5443D /* VoiceOverLabelView.swift in Sources */,
 				8723FEBB2C7CFA8C00E37087 /* ContentView.swift in Sources */,
+				870F176A2C7D055400F5443D /* AdjustableActionView.swift in Sources */,
 				8723FEB92C7CFA8C00E37087 /* AccessibilitySandboxApp.swift in Sources */,
+				870F17682C7D025200F5443D /* AccessibilityDataView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  VoiceOverLabelView.swift
 //  AccessibilitySandbox
 //
 //  Created by Marco Capraro on 8/26/24.
