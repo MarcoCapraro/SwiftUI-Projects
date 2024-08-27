@@ -35,6 +35,21 @@ struct ContentView: View {
     @State private var isWrongFlag = false
     @State private var isOtherFlag = false
     
+    let labels = [
+        "Estonia": "Flag 3 horizontal stripes. Top to bottom, blue, black, white",
+        "France": "Flag 3 vertical stripes. Left to right, blue, white, red",
+        "Germany": "Flag 3 horizontal stripes. Top to bottom, black, red, gold",
+        "Ireland": "Flag 3 vertical stripes. Left to right, green, white, orange",
+        "Italy": "Flag 3 vertical stripes. Left to right, green, white, red",
+        "Monaco": "Flag 2 horizontal stripes. Top to bottom, red, white",
+        "Nigeria": "Flag 3 vertical stripes. Left to right, green, white, green",
+        "Poland": "Flag 2 horizontal stripes. Top to bottom, white, red",
+        "Spain": "Flag 3 horizontal stripes. Top to bottom, red, gold, red",
+        "UK": "Flag with overlapping red and white crosses, both straight and diagonally, on a blue background",
+        "Ukraine": "Flag 2 horizontal stripes. Top to bottom, blue, yellow",
+        "US": "Flag with many red and white stripes, with white stars on a blue background in the top-left corner"
+    ]
+    
     var body: some View {
         ZStack {
             RadialGradient(colors: [.blue, .black], center: .center, startRadius: 150, endRadius: 450)
@@ -65,6 +80,7 @@ struct ContentView: View {
                         } label: {
                             FlagImage(country: countries[number])
                         }
+                        .accessibilityLabel(labels[countries[number], default: "Uknown Flag"])
                         .rotation3DEffect(
                             .degrees(isCorrectFlag && selectedFlag == number ? 360 : 0),
                             axis: (x: 0.0, y: 1.0, z: 0.0)
