@@ -32,6 +32,8 @@ struct ListLayoutView: View {
                 .navigationDestination(for: Mission.self) { mission in
                     MissionView(mission: mission, astronauts: astronauts)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(mission.displayName) Date \(mission.formattedLaunchDate)")
             }
             .listRowBackground(Color.darkBackground)
             

@@ -31,18 +31,22 @@ struct MissionView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Image(mission.image)
-                    .resizable()
-                    .scaledToFit()
-                    .containerRelativeFrame(.horizontal) { width, axis in
-                        width * 0.6
-                    }
-                
-                // Add launch date underneath mission badge
-                Text("\(mission.missionFormattedDate)")
-                    .font(.title3.bold())
-                    .padding(.top)
-                    .lineLimit(1)
+                VStack {
+                    Image(mission.image)
+                        .resizable()
+                        .scaledToFit()
+                        .containerRelativeFrame(.horizontal) { width, axis in
+                            width * 0.6
+                        }
+                    
+                    // Add launch date underneath mission badge
+                    Text("\(mission.missionFormattedDate)")
+                        .font(.title3.bold())
+                        .padding(.top)
+                        .lineLimit(1)
+                }
+                .accessibilityElement()
+                .accessibilityLabel("\(mission.displayName) \((mission.missionFormattedDate != "Launch Failure" ? "Launch Date: \(mission.missionFormattedDate)" : "Launch Failure"))")
                 
                 MissionDetailView(mission: mission, crew: crew)
             }

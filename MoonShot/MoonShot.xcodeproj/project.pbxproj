@@ -77,7 +77,6 @@
 			children = (
 				8748A4752BF52E63000A1B01 /* Extensions */,
 				8748A4592BF2718B000A1B01 /* MoonShotApp.swift */,
-				8748A46F2BF3BFB1000A1B01 /* PracticeView.swift */,
 				8748A45B2BF2718B000A1B01 /* ContentView.swift */,
 				8748A4812BF54810000A1B01 /* GridLayoutView.swift */,
 				8748A4832BF54860000A1B01 /* ListLayoutView.swift */,
@@ -90,6 +89,7 @@
 				8748A4672BF3BCF3000A1B01 /* missions.json */,
 				8748A45D2BF2718C000A1B01 /* Assets.xcassets */,
 				8748A45F2BF2718C000A1B01 /* Preview Content */,
+				8787C42C2C7FE4C900702CFD /* Practice */,
 			);
 			path = MoonShot;
 			sourceTree = "<group>";
@@ -109,6 +109,14 @@
 				8748A4732BF3DE4F000A1B01 /* ShapeStyle+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8787C42C2C7FE4C900702CFD /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				8748A46F2BF3BFB1000A1B01 /* PracticeView.swift */,
+			);
+			path = Practice;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

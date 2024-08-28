@@ -13,22 +13,25 @@ struct MissionDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-           
-            Rectangle()
-                .frame(height: 2)
-                .foregroundStyle(.lightBackground)
-                .padding(.vertical)
-            
-            Text("Mission Highlights")
-                .font(.title.bold())
-                .padding(.bottom, 5)
-            
-            Text(mission.description)
-            
-            Rectangle()
-                .frame(height: 2)
-                .foregroundStyle(.lightBackground)
-                .padding(.vertical)
+            VStack {
+                Rectangle()
+                    .frame(height: 2)
+                    .foregroundStyle(.lightBackground)
+                    .padding(.vertical)
+                    .accessibilityHidden(true)
+                
+                Text("Mission Highlights")
+                    .font(.title.bold())
+                    .padding(.bottom, 5)
+                
+                Text(mission.description)
+                
+                Rectangle()
+                    .frame(height: 2)
+                    .foregroundStyle(.lightBackground)
+                    .padding(.vertical)
+                    .accessibilityHidden(true)
+            }
             
             Text("Crew")
                 .font(.title.bold())
@@ -63,6 +66,8 @@ struct MissionDetailView: View {
                         }
                         .padding(.horizontal)
                     }
+                    .accessibilityElement()
+                    .accessibilityLabel("\(crewMember.astronaut.name) \(crewMember.role)")
                 }
             }
         }
