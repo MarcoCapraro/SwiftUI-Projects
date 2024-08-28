@@ -40,6 +40,8 @@ struct ExpenseView: View {
                         .font(.headline.weight(.medium))
                         .underline()
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(item.name), costed \(item.amount)")
             }
             .onDelete(perform: deleteExpense)
         }
